@@ -151,15 +151,15 @@ export default function Footer() {
         </p>
       </div>
 
-      {/* White Box Section for Cars - HALF height */}
+      {/* White Box Section for Cars - HALF the height */}
       <div className="bg-white h-20 md:h-24 relative overflow-visible">
-        {/* White truck on left - SMALLER and MORE TO LEFT */}
-        <div className="hidden lg:block absolute left-0 -top-20 md:-top-24 animate-slideUp" style={{ animationDelay: "300ms" }}>
-          <img src="/images/car2.png" alt="White truck" className="h-40 md:h-44 w-auto drop-shadow-2xl opacity-95" />
+        {/* White truck on left - positioned to overlap both white box and black footer */}
+        <div className="hidden lg:block absolute left-4 xl:left-8 -top-20 md:-top-24 animate-slideUp" style={{ animationDelay: "300ms" }}>
+          <img src="/images/car2.png" alt="White truck" className="h-44 md:h-48 w-auto drop-shadow-2xl opacity-95" />
         </div>
-        {/* Red car on right - use car.png from Section 3 */}
+        {/* Red car on right - positioned to overlap both white box and black footer */}
         <div className="hidden lg:block absolute right-4 xl:right-8 -top-20 md:-top-24 animate-slideUp" style={{ animationDelay: "400ms" }}>
-          <img src="/images/car.png" alt="Red car" className="h-44 md:h-48 w-auto drop-shadow-2xl opacity-95" />
+          <img src="/images/car1.png" alt="Red car" className="h-44 md:h-48 w-auto drop-shadow-2xl opacity-95" />
         </div>
       </div>
 

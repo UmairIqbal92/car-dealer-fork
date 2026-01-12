@@ -36,32 +36,31 @@ export default function CarFinderForm() {
   }
 
   return (
-    <section className="py-10 md:py-14 px-4 md:px-6 bg-gradient-to-b from-gray-50 to-white">
-      <div className="max-w-[1400px] mx-auto">
+    <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-[1300px] mx-auto">
+        {/* Heading ABOVE everything */}
+        <div className="text-center mb-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3">
+            Don't see what you're looking for?
+          </h2>
+          <p className="text-gray-600 text-base">We can help you find it! Fill out the form below.</p>
+        </div>
+
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            {/* Left side - Image with heading ABOVE it */}
-            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-8 lg:p-10">
-              {/* Heading ABOVE car image */}
-              <div className="text-left w-full mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-black mb-2">
-                  Don't see what you're looking for?
-                </h2>
-                <p className="text-gray-600 text-base">We can help you find it! Fill out the form below.</p>
-              </div>
-              
-              {/* Car image - BIGGER */}
+            {/* Left side - Image (50%) - BIGGER/PROMINENT */}
+            <div className="flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-8 lg:p-12">
               <img
                 src="/images/form-image1.png"
                 alt="Car"
-                className="w-full h-auto object-contain max-h-[400px] drop-shadow-2xl"
+                className="w-full h-auto object-contain max-h-[450px] drop-shadow-2xl"
               />
             </div>
 
-            {/* Right side - Form - MORE COMPACT */}
-            <div className="p-6 lg:p-8">
+            {/* Right side - Form (50%) - WIDER layout, LESS vertical */}
+            <div className="p-6 lg:p-10">
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Vehicle Information */}
+                {/* Vehicle Information - 2 columns COMPACT */}
                 <div>
                   <h3 className="text-sm font-bold text-black mb-3 uppercase tracking-wide">Vehicle Info</h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -72,7 +71,7 @@ export default function CarFinderForm() {
                         value={formData.make}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       >
                         <option value="">Select</option>
                         {makes.map((m) => (
@@ -90,7 +89,7 @@ export default function CarFinderForm() {
                         value={formData.model}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       >
                         <option value="">Select</option>
                         {models.map((m) => (
@@ -108,7 +107,7 @@ export default function CarFinderForm() {
                         value={formData.year}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       >
                         <option value="">Select</option>
                         {years.map((y) => (
@@ -128,7 +127,7 @@ export default function CarFinderForm() {
                         onChange={handleChange}
                         placeholder="100000"
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
 
@@ -139,7 +138,7 @@ export default function CarFinderForm() {
                         value={formData.priceRange}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       >
                         <option value="">Select</option>
                         <option value="0-10000">$0 - $10,000</option>
@@ -151,7 +150,7 @@ export default function CarFinderForm() {
                   </div>
                 </div>
 
-                {/* Features */}
+                {/* Features - full width textarea COMPACT */}
                 <div>
                   <label className="block text-xs font-semibold text-black mb-1.5">Desired Features</label>
                   <textarea
@@ -160,11 +159,11 @@ export default function CarFinderForm() {
                     onChange={handleChange}
                     placeholder="Any specific features..."
                     rows={2}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600 resize-none"
+                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600 resize-none"
                   />
                 </div>
 
-                {/* Contact Information */}
+                {/* Contact Information - 2 columns COMPACT */}
                 <div>
                   <h3 className="text-sm font-bold text-black mb-3 uppercase tracking-wide">Contact Info</h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -176,7 +175,7 @@ export default function CarFinderForm() {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
 
@@ -188,7 +187,7 @@ export default function CarFinderForm() {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
 
@@ -200,7 +199,7 @@ export default function CarFinderForm() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
 
@@ -212,14 +211,14 @@ export default function CarFinderForm() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Terms */}
-                <div className="flex items-center gap-2">
+                {/* Terms - COMPACT */}
+                <div className="flex items-center gap-2 pt-1">
                   <input
                     type="checkbox"
                     name="terms"
@@ -234,7 +233,7 @@ export default function CarFinderForm() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition-colors text-sm shadow-lg hover:shadow-xl"
+                  className="w-full bg-red-600 text-white px-6 py-3.5 rounded-lg font-bold hover:bg-red-700 transition-colors text-sm shadow-lg hover:shadow-xl"
                 >
                   SUBMIT
                 </button>
