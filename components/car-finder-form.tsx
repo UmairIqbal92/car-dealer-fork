@@ -2,14 +2,19 @@
 
 import type React from "react"
 import { useState } from "react"
+import { Search } from "lucide-react"
 
 export default function CarFinderForm() {
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     make: "",
     model: "",
-    year: "",
+    yearMin: "",
+    yearMax: "",
     maxMileage: "",
-    priceRange: "",
+    priceMin: "",
+    priceMax: "",
     features: "",
     firstName: "",
     lastName: "",
@@ -18,9 +23,9 @@ export default function CarFinderForm() {
     terms: false,
   })
 
-  const makes = ["Toyota", "Honda", "Ford", "BMW", "Mercedes", "Audi", "Chevrolet", "Nissan"]
-  const models = ["Camry", "Accord", "F-150", "3 Series", "C-Class", "A4", "Silverado", "Altima"]
-  const years = Array.from({ length: 30 }, (_, i) => 2024 - i)
+  const makes = ["Toyota", "Honda", "Ford", "BMW", "Mercedes", "Audi", "Chevrolet", "Nissan", "Jeep", "RAM"]
+  const models = ["Camry", "Accord", "F-150", "3 Series", "C-Class", "A4", "Silverado", "Altima", "Wrangler", "1500"]
+  const years = Array.from({ length: 30 }, (_, i) => 2025 - i)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -30,15 +35,84 @@ export default function CarFinderForm() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    setSubmitting(true)
+
+    try {
+      const res = await fetch("/api/car-finder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          make: formData.make,
+          model: formData.model,
+          yearMin: formData.yearMin,
+          yearMax: formData.yearMax,
+          priceMin: formData.priceMin,
+          priceMax: formData.priceMax,
+          message: `Max Mileage: ${formData.maxMileage || 'Any'}\nFeatures: ${formData.features || 'None specified'}`
+        })
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert("Failed to submit request. Please try again.")
+      }
+    } catch (err) {
+      console.error("Error submitting car finder:", err)
+      alert("An error occurred. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (submitted) {
+    return (
+      <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-[1300px] mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-12 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Search size={32} className="text-green-600" />
+            </div>
+            <h2 className="text-3xl font-bold text-black mb-2">Request Submitted!</h2>
+            <p className="text-gray-600 mb-6">We'll start searching for your perfect car right away and contact you soon.</p>
+            <button
+              onClick={() => {
+                setSubmitted(false)
+                setFormData({
+                  make: "",
+                  model: "",
+                  yearMin: "",
+                  yearMax: "",
+                  maxMileage: "",
+                  priceMin: "",
+                  priceMax: "",
+                  features: "",
+                  firstName: "",
+                  lastName: "",
+                  phone: "",
+                  email: "",
+                  terms: false,
+                })
+              }}
+              className="text-[#EC3827] font-semibold hover:underline"
+            >
+              Submit another request
+            </button>
+          </div>
+        </div>
+      </section>
+    )
   }
 
   return (
     <section className="py-12 md:py-16 px-4 md:px-6 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-[1300px] mx-auto">
-        {/* Heading ABOVE everything */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-3">
             Don't see what you're looking for?
@@ -48,7 +122,6 @@ export default function CarFinderForm() {
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-            {/* Left side - Image (50%) - BIGGER/PROMINENT */}
             <div className="flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-8 lg:p-12">
               <img
                 src="/images/form-image1.png"
@@ -57,10 +130,8 @@ export default function CarFinderForm() {
               />
             </div>
 
-            {/* Right side - Form (50%) - WIDER layout, LESS vertical */}
             <div className="p-6 lg:p-10">
               <form onSubmit={handleSubmit} className="space-y-5">
-                {/* Vehicle Information - 2 columns COMPACT */}
                 <div>
                   <h3 className="text-sm font-bold text-black mb-3 uppercase tracking-wide">Vehicle Info</h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -101,15 +172,14 @@ export default function CarFinderForm() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-black mb-1.5">Year *</label>
+                      <label className="block text-xs font-semibold text-black mb-1.5">Year From</label>
                       <select
-                        name="year"
-                        value={formData.year}
+                        name="yearMin"
+                        value={formData.yearMin}
                         onChange={handleChange}
-                        required
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       >
-                        <option value="">Select</option>
+                        <option value="">Any</option>
                         {years.map((y) => (
                           <option key={y} value={y}>
                             {y}
@@ -119,38 +189,43 @@ export default function CarFinderForm() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-black mb-1.5">Max Mileage *</label>
+                      <label className="block text-xs font-semibold text-black mb-1.5">Max Mileage</label>
                       <input
                         type="number"
                         name="maxMileage"
                         value={formData.maxMileage}
                         onChange={handleChange}
                         placeholder="100000"
-                        required
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
                       />
                     </div>
 
-                    <div className="col-span-2">
-                      <label className="block text-xs font-semibold text-black mb-1.5">Price Range *</label>
-                      <select
-                        name="priceRange"
-                        value={formData.priceRange}
+                    <div>
+                      <label className="block text-xs font-semibold text-black mb-1.5">Min Price</label>
+                      <input
+                        type="number"
+                        name="priceMin"
+                        value={formData.priceMin}
                         onChange={handleChange}
-                        required
+                        placeholder="$0"
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                      >
-                        <option value="">Select</option>
-                        <option value="0-10000">$0 - $10,000</option>
-                        <option value="10000-20000">$10,000 - $20,000</option>
-                        <option value="20000-30000">$20,000 - $30,000</option>
-                        <option value="30000+">$30,000+</option>
-                      </select>
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-semibold text-black mb-1.5">Max Price</label>
+                      <input
+                        type="number"
+                        name="priceMax"
+                        value={formData.priceMax}
+                        onChange={handleChange}
+                        placeholder="Any"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
+                      />
                     </div>
                   </div>
                 </div>
 
-                {/* Features - full width textarea COMPACT */}
                 <div>
                   <label className="block text-xs font-semibold text-black mb-1.5">Desired Features</label>
                   <textarea
@@ -163,7 +238,6 @@ export default function CarFinderForm() {
                   />
                 </div>
 
-                {/* Contact Information - 2 columns COMPACT */}
                 <div>
                   <h3 className="text-sm font-bold text-black mb-3 uppercase tracking-wide">Contact Info</h3>
                   <div className="grid grid-cols-2 gap-3">
@@ -217,7 +291,6 @@ export default function CarFinderForm() {
                   </div>
                 </div>
 
-                {/* Terms - COMPACT */}
                 <div className="flex items-center gap-2 pt-1">
                   <input
                     type="checkbox"
@@ -230,12 +303,12 @@ export default function CarFinderForm() {
                   <label className="text-xs text-gray-700">I agree to all your terms and policies</label>
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full bg-red-600 text-white px-6 py-3.5 rounded-lg font-bold hover:bg-red-700 transition-colors text-sm shadow-lg hover:shadow-xl"
+                  disabled={submitting}
+                  className="w-full bg-red-600 text-white px-6 py-3.5 rounded-lg font-bold hover:bg-red-700 transition-colors text-sm shadow-lg hover:shadow-xl disabled:opacity-50"
                 >
-                  SUBMIT
+                  {submitting ? "SUBMITTING..." : "SUBMIT"}
                 </button>
               </form>
             </div>

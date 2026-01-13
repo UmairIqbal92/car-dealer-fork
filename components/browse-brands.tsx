@@ -29,7 +29,7 @@ export default function BrowseByBrands() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
           {brands.map((brand) => (
-            <Link key={brand.name} href={`/inventory?brand=${brand.name.toLowerCase()}`}>
+            <Link key={brand.name} href={`/vehicles?make=${brand.name}`}>
               <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer p-8 flex flex-col items-center justify-center min-h-[200px] group relative overflow-hidden border border-gray-100">
                 {/* Card Background */}
                 <div
@@ -68,7 +68,7 @@ export default function BrowseByBrands() {
 
         {/* View All Button */}
         <div className="flex justify-center">
-          <Link href="/inventory">
+          <Link href="/vehicles">
             <button
               className="inline-flex items-center gap-2 text-white px-10 py-4 rounded-lg font-bold hover:opacity-90 transition-all group text-lg"
               style={{ backgroundColor: "#EC3827" }}

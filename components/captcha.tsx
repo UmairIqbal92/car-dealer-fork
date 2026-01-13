@@ -1,8 +1,7 @@
 "use client"
 
 import type React from "react"
-
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 interface CaptchaProps {
   onVerify: (isValid: boolean) => void
@@ -13,20 +12,24 @@ export default function Captcha({ onVerify }: CaptchaProps) {
   const [num2, setNum2] = useState(0)
   const [userAnswer, setUserAnswer] = useState("")
   const [isValid, setIsValid] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => {
-    generateNewCaptcha()
-  }, [])
-
-  const generateNewCaptcha = () => {
+  const generateNewCaptcha = useCallback(() => {
     const n1 = Math.floor(Math.random() * 10) + 1
     const n2 = Math.floor(Math.random() * 10) + 1
     setNum1(n1)
     setNum2(n2)
     setUserAnswer("")
     setIsValid(false)
-    onVerify(false)
-  }
+    if (onVerify) {
+      onVerify(false)
+    }
+  }, [onVerify])
+
+  useEffect(() => {
+    setMounted(true)
+    generateNewCaptcha()
+  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const answer = e.target.value
@@ -34,7 +37,27 @@ export default function Captcha({ onVerify }: CaptchaProps) {
     const correctAnswer = num1 + num2
     const valid = Number.parseInt(answer) === correctAnswer
     setIsValid(valid)
-    onVerify(valid)
+    if (onVerify) {
+      onVerify(valid)
+    }
+  }
+
+  if (!mounted) {
+    return (
+      <div className="space-y-3">
+        <label className="block text-base font-semibold text-black">
+          Security Check: Loading...
+        </label>
+        <div className="flex gap-3 items-center">
+          <input
+            type="number"
+            placeholder="Enter answer"
+            disabled
+            className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500"
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -61,7 +84,7 @@ export default function Captcha({ onVerify }: CaptchaProps) {
       </div>
       {userAnswer && (
         <p className={`text-sm ${isValid ? "text-green-600" : "text-red-600"}`}>
-          {isValid ? "✓ Correct!" : "✗ Incorrect answer"}
+          {isValid ? "Correct!" : "Incorrect answer"}
         </p>
       )}
     </div>

@@ -4,12 +4,12 @@ import type React from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
-import Captcha from "@/components/captcha"
-import { MapPin, Phone, Mail, Clock, Facebook, Twitter, Instagram, Youtube } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube } from "lucide-react"
 import { useState } from "react"
 
 export default function ContactPage() {
-  const [isCaptchaValid, setIsCaptchaValid] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,14 +23,29 @@ export default function ContactPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!isCaptchaValid) {
-      alert("Please complete the security check correctly.")
-      return
+    setSubmitting(true)
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+      } else {
+        alert("Failed to send message. Please try again.")
+      }
+    } catch (err) {
+      console.error("Error sending message:", err)
+      alert("An error occurred. Please try again.")
+    } finally {
+      setSubmitting(false)
     }
-    console.log("Form submitted:", formData)
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
   }
 
   return (
@@ -38,7 +53,6 @@ export default function ContactPage() {
       <Header />
       <FloatingActions />
 
-      {/* Page Header */}
       <section className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Contact Us</h1>
@@ -46,16 +60,13 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section className="py-20 md:py-24 px-4 md:px-6 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16">
-            {/* Left Column - Office Info */}
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-lg">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-10">Visit Our Office</h2>
 
               <div className="space-y-8">
-                {/* Office Location */}
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
@@ -72,7 +83,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Phone */}
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
@@ -88,7 +98,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
@@ -107,7 +116,6 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                {/* Business Hours */}
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
@@ -118,17 +126,14 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-bold text-black text-lg mb-2">Business Hours</h3>
                     <p className="text-gray-700 leading-relaxed">
-                      Monday - Saturday
-                      <br />
-                      9:00 AM - 6:00 PM
-                      <br />
+                      Monday - Saturday<br />
+                      9:00 AM - 6:00 PM<br />
                       Sunday: Closed
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Social Media */}
               <div className="mt-12">
                 <h3 className="font-bold text-black text-lg mb-6">Follow Us</h3>
                 <div className="flex gap-4">
@@ -141,16 +146,6 @@ export default function ContactPage() {
                     aria-label="Facebook"
                   >
                     <Facebook size={22} />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
-                    style={{ backgroundColor: "#EC3827" }}
-                    aria-label="Twitter"
-                  >
-                    <Twitter size={22} />
                   </a>
                   <a
                     href="https://instagram.com"
@@ -174,90 +169,118 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
+
+              <div className="mt-12">
+                <h3 className="font-bold text-black text-lg mb-4">Find Us On Map</h3>
+                <div className="rounded-xl overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d-96.87!3d32.89!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2435+Glenda+Ln+Ste+4%2C+Dallas%2C+TX+75229!5e0!3m2!1sen!2sus!4v1609459200000!5m2!1sen!2sus"
+                    width="100%"
+                    height="250"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Car Junction Location"
+                  ></iframe>
+                </div>
+              </div>
             </div>
 
-            {/* Right Column - Contact Form */}
             <div className="bg-white p-8 md:p-10 rounded-2xl shadow-lg">
               <h2 className="text-3xl md:text-4xl font-bold text-black mb-10">Get in Touch</h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-base font-semibold text-black mb-2">Your Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="John Doe"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-                    required
-                  />
+              {submitted ? (
+                <div className="text-center py-12">
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Mail size={32} className="text-green-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-black mb-2">Message Sent!</h3>
+                  <p className="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-[#EC3827] font-semibold hover:underline"
+                  >
+                    Send another message
+                  </button>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-base font-semibold text-black mb-2">Your Name *</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-semibold text-black mb-2">Your Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="john@example.com"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label className="block text-base font-semibold text-black mb-2">Your Email *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-semibold text-black mb-2">Phone *</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="(214) 215-6273"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label className="block text-base font-semibold text-black mb-2">Phone *</label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder="(214) 215-6273"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-semibold text-black mb-2">Subject *</label>
-                  <input
-                    type="text"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    placeholder="How can we help you?"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-                    required
-                  />
-                </div>
+                  <div>
+                    <label className="block text-base font-semibold text-black mb-2">Subject *</label>
+                    <input
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      placeholder="How can we help you?"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <label className="block text-base font-semibold text-black mb-2">Message *</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="Your message here..."
-                    rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827] resize-none"
-                    required
-                  ></textarea>
-                </div>
+                  <div>
+                    <label className="block text-base font-semibold text-black mb-2">Message *</label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Your message here..."
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827] resize-none"
+                      required
+                    ></textarea>
+                  </div>
 
-                {/* Captcha */}
-                <Captcha onVerify={setIsCaptchaValid} />
-
-                <button
-                  type="submit"
-                  disabled={!isCaptchaValid}
-                  className="w-full text-white px-6 py-4 rounded-lg font-bold hover:opacity-90 transition-colors text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ backgroundColor: "#EC3827" }}
-                >
-                  SEND MESSAGE →
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full text-white px-6 py-4 rounded-lg font-bold hover:opacity-90 transition-colors text-lg disabled:opacity-50"
+                    style={{ backgroundColor: "#EC3827" }}
+                  >
+                    {submitting ? "SENDING..." : "SEND MESSAGE"}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function SearchFilter() {
     }
     if (filters.mileageMax) params.append("mileageMax", filters.mileageMax)
 
-    router.push(`/inventory?${params.toString()}`)
+    router.push(`/vehicles?${params.toString()}`)
   }
 
   return (

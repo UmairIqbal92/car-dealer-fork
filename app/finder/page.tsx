@@ -7,9 +7,12 @@ import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
 import Captcha from "@/components/captcha"
 import AdvancedSelect from "@/components/advanced-select"
+import { Search } from "lucide-react"
 
 export default function CarFinderPage() {
   const [isCaptchaValid, setIsCaptchaValid] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     make: "",
     model: "",
@@ -48,13 +51,84 @@ export default function CarFinderPage() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!isCaptchaValid) {
       alert("Please complete the security check correctly.")
       return
     }
-    console.log("Car Finder form submitted:", formData)
+    
+    setSubmitting(true)
+
+    try {
+      const priceMatch = formData.priceRange.match(/\$?([\d,]+)/g)
+      let priceMin = ""
+      let priceMax = ""
+      if (priceMatch) {
+        priceMin = priceMatch[0]?.replace(/[$,]/g, '') || ""
+        priceMax = priceMatch[1]?.replace(/[$,]/g, '') || ""
+      }
+
+      const res = await fetch("/api/car-finder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          make: formData.make,
+          model: formData.model,
+          yearMin: formData.year,
+          yearMax: formData.year,
+          priceMin,
+          priceMax,
+          message: `Max Mileage: ${formData.maxMileage || 'Any'}\nDesired Features: ${formData.features || 'None specified'}`
+        })
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+      } else {
+        alert("Failed to submit request. Please try again.")
+      }
+    } catch (err) {
+      console.error("Error submitting request:", err)
+      alert("An error occurred. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (submitted) {
+    return (
+      <main className="min-h-screen bg-white">
+        <Header />
+        <FloatingActions />
+        
+        <section className="py-20 px-4 md:px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <div className="bg-white rounded-2xl shadow-xl p-12">
+              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Search size={48} className="text-green-600" />
+              </div>
+              <h1 className="text-3xl font-bold text-black mb-4">Request Submitted!</h1>
+              <p className="text-gray-600 mb-8">
+                Thank you for your car finder request. Our team will search for matching vehicles and contact you soon.
+              </p>
+              <a
+                href="/vehicles"
+                className="inline-block bg-[#EC3827] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors"
+              >
+                Browse Current Inventory
+              </a>
+            </div>
+          </div>
+        </section>
+        
+        <Footer />
+      </main>
+    )
   }
 
   return (
@@ -62,7 +136,6 @@ export default function CarFinderPage() {
       <Header />
       <FloatingActions />
 
-      {/* Page Header */}
       <section className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Find Your Perfect Car</h1>
@@ -70,12 +143,10 @@ export default function CarFinderPage() {
         </div>
       </section>
 
-      {/* Form Section */}
       <section className="py-16 px-4 md:px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              {/* Left: Truck Image */}
               <div className="relative min-h-[400px] lg:min-h-full bg-gray-100">
                 <img
                   src="/images/white-truck.jpg"
@@ -90,10 +161,8 @@ export default function CarFinderPage() {
                 </div>
               </div>
 
-              {/* Right: Form */}
               <div className="p-8 md:p-12">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Vehicle Info */}
                   <div>
                     <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#EC3827]">
                       VEHICLE PREFERENCES
@@ -178,7 +247,6 @@ export default function CarFinderPage() {
                     </div>
                   </div>
 
-                  {/* Contact Info */}
                   <div>
                     <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#EC3827]">
                       CONTACT INFORMATION
@@ -236,10 +304,8 @@ export default function CarFinderPage() {
                     </div>
                   </div>
 
-                  {/* Captcha */}
                   <Captcha onVerify={setIsCaptchaValid} />
 
-                  {/* Terms */}
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -255,14 +321,13 @@ export default function CarFinderPage() {
                     </span>
                   </label>
 
-                  {/* Submit */}
                   <button
                     type="submit"
-                    disabled={!isCaptchaValid}
+                    disabled={!isCaptchaValid || submitting}
                     className="w-full text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     style={{ backgroundColor: "#EC3827" }}
                   >
-                    SUBMIT REQUEST
+                    {submitting ? "SUBMITTING..." : "SUBMIT REQUEST"}
                   </button>
                 </form>
               </div>
