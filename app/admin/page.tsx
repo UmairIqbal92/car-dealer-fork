@@ -73,8 +73,6 @@ export default function AdminDashboard() {
     { href: "/admin", icon: LayoutDashboard, label: "Dashboard", active: true },
     { href: "/admin/vehicles", icon: Car, label: "Vehicles" },
     { href: "/admin/categories", icon: FolderOpen, label: "Categories" },
-    { href: "/admin/inquiries", icon: MessageSquare, label: "Inquiries" },
-    { href: "/admin/applications", icon: FileText, label: "Applications" },
     { href: "/admin/settings", icon: Settings, label: "Settings" },
   ]
 
@@ -131,7 +129,7 @@ export default function AdminDashboard() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
@@ -155,30 +153,6 @@ export default function AdminDashboard() {
               </div>
             </div>
           </div>
-
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                <MessageSquare size={24} className="text-yellow-600" />
-              </div>
-              <div>
-                <p className="text-gray-500 text-sm">Inquiries</p>
-                <p className="text-3xl font-bold text-black">{stats.inquiries}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-xl shadow-lg p-6">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
-                <FileText size={24} className="text-purple-600" />
-              </div>
-              <div>
-                <p className="text-gray-500 text-sm">Applications</p>
-                <p className="text-3xl font-bold text-black">{stats.applications}</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -192,10 +166,6 @@ export default function AdminDashboard() {
               <Link href="/admin/categories" className="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
                 <span className="font-semibold text-black">Manage Categories</span>
                 <p className="text-sm text-gray-500">Add or edit vehicle categories</p>
-              </Link>
-              <Link href="/admin/inquiries" className="block w-full text-left px-4 py-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors">
-                <span className="font-semibold text-black">View Inquiries</span>
-                <p className="text-sm text-gray-500">Check customer inquiries</p>
               </Link>
             </div>
           </div>
