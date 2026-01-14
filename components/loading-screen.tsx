@@ -3,9 +3,12 @@
 import { useEffect, useState } from "react"
 
 export default function LoadingScreen() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    setIsLoading(true)
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 1500)
@@ -13,7 +16,7 @@ export default function LoadingScreen() {
     return () => clearTimeout(timer)
   }, [])
 
-  if (!isLoading) return null
+  if (!mounted || !isLoading) return null
 
   return (
     <div className="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500">

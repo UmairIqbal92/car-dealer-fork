@@ -4,10 +4,13 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState("")
   const fullText = "Dreaming About Your Next CAR?"
+  const [displayText, setDisplayText] = useState(fullText)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    setDisplayText("")
     let index = 0
     const interval = setInterval(() => {
       if (index < fullText.length) {
@@ -33,7 +36,7 @@ export default function Hero() {
           <div className="flex flex-col justify-center z-10 w-full md:w-1/2 animate-slideUp">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-xl min-h-20">
               {displayText}
-              {displayText.length < fullText.length && <span className="animate-pulse">|</span>}
+              {mounted && displayText.length < fullText.length && <span className="animate-pulse">|</span>}
             </h1>
 
             <p className="text-lg md:text-xl text-white mb-8 leading-relaxed drop-shadow-lg animate-fadeIn font-semibold">
