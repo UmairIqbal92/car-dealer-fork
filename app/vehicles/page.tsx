@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
 import AdvancedSelect from "@/components/advanced-select"
-import { SlidersHorizontal, Grid3x3, List, Car } from "lucide-react"
+import { SlidersHorizontal, Grid3x3, List, Car, Loader2 } from "lucide-react"
 
 interface Vehicle {
   id: number
@@ -25,11 +25,22 @@ interface Vehicle {
   featured: boolean
 }
 
+interface Pagination {
+  page: number
+  limit: number
+  totalCount: number
+  totalPages: number
+  hasMore: boolean
+}
+
 export default function VehiclesPage() {
   const searchParams = useSearchParams()
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [page, setPage] = useState(1)
+  const [pagination, setPagination] = useState<Pagination | null>(null)
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "")
   const [filters, setFilters] = useState({
     make: searchParams.get("make") || searchParams.get("brand") || "",
@@ -42,6 +53,7 @@ export default function VehiclesPage() {
     fuelType: searchParams.get("fuelType") || "",
     transmission: searchParams.get("transmission") || "",
   })
+  const observerTarget = useRef<HTMLDivElement>(null)
 
   const makes = ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "BMW", "Mercedes-Benz", "Audi", "Jeep", "RAM", "GMC", "Hyundai", "Kia"]
   const models = ["Camry", "Accord", "F-150", "Silverado", "Altima", "3 Series", "C-Class", "A4", "Wrangler", "1500", "Tacoma", "CR-V", "Civic"]
@@ -50,8 +62,51 @@ export default function VehiclesPage() {
   const fuelTypes = ["Gasoline", "Diesel", "Hybrid", "Electric"]
   const transmissions = ["Automatic", "Manual"]
 
+  const buildParams = useCallback((pageNum: number) => {
+    const params = new URLSearchParams()
+    params.append("page", pageNum.toString())
+    params.append("limit", "12")
+    if (searchQuery) params.append("search", searchQuery)
+    if (filters.make) params.append("make", filters.make)
+    if (filters.model) params.append("model", filters.model)
+    if (filters.year) params.append("yearMin", filters.year)
+    if (filters.priceMin) params.append("priceMin", filters.priceMin)
+    if (filters.priceMax) params.append("priceMax", filters.priceMax)
+    if (filters.mileageMax) params.append("mileageMax", filters.mileageMax)
+    if (filters.bodyType) params.append("bodyType", filters.bodyType)
+    if (filters.fuelType) params.append("fuelType", filters.fuelType)
+    if (filters.transmission) params.append("transmission", filters.transmission)
+    return params
+  }, [searchQuery, filters])
+
+  const fetchVehicles = useCallback(async (pageNum: number, append: boolean = false) => {
+    if (append) {
+      setLoadingMore(true)
+    } else {
+      setLoading(true)
+    }
+    try {
+      const params = buildParams(pageNum)
+      const res = await fetch(`/api/vehicles?${params.toString()}`)
+      const data = await res.json()
+      
+      if (append) {
+        setVehicles(prev => [...prev, ...(data.vehicles || [])])
+      } else {
+        setVehicles(data.vehicles || [])
+      }
+      setPagination(data.pagination || null)
+    } catch (err) {
+      console.error("Error fetching vehicles:", err)
+    } finally {
+      setLoading(false)
+      setLoadingMore(false)
+    }
+  }, [buildParams])
+
   useEffect(() => {
-    fetchVehicles()
+    setPage(1)
+    fetchVehicles(1, false)
   }, [filters, searchQuery])
 
   useEffect(() => {
@@ -61,30 +116,24 @@ export default function VehiclesPage() {
     }
   }, [searchParams])
 
-  const fetchVehicles = async () => {
-    setLoading(true)
-    try {
-      const params = new URLSearchParams()
-      if (searchQuery) params.append("search", searchQuery)
-      if (filters.make) params.append("make", filters.make)
-      if (filters.model) params.append("model", filters.model)
-      if (filters.year) params.append("yearMin", filters.year)
-      if (filters.priceMin) params.append("priceMin", filters.priceMin)
-      if (filters.priceMax) params.append("priceMax", filters.priceMax)
-      if (filters.mileageMax) params.append("mileageMax", filters.mileageMax)
-      if (filters.bodyType) params.append("bodyType", filters.bodyType)
-      if (filters.fuelType) params.append("fuelType", filters.fuelType)
-      if (filters.transmission) params.append("transmission", filters.transmission)
-      
-      const res = await fetch(`/api/vehicles?${params.toString()}`)
-      const data = await res.json()
-      setVehicles(data.vehicles || [])
-    } catch (err) {
-      console.error("Error fetching vehicles:", err)
-    } finally {
-      setLoading(false)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && pagination?.hasMore && !loadingMore && !loading) {
+          const nextPage = page + 1
+          setPage(nextPage)
+          fetchVehicles(nextPage, true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current)
     }
-  }
+
+    return () => observer.disconnect()
+  }, [pagination?.hasMore, loadingMore, loading, page, fetchVehicles])
 
   const handleFilterChange = (name: string, value: string) => {
     setFilters((prev) => ({ ...prev, [name]: value }))
@@ -247,7 +296,7 @@ export default function VehiclesPage() {
             <div className="lg:col-span-3">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                 <p className="text-gray-700 font-semibold">
-                  {loading ? "Loading..." : `Showing ${vehicles.length} vehicles`}
+                  {loading ? "Loading..." : pagination ? `Showing ${vehicles.length} of ${pagination.totalCount} vehicles` : `Showing ${vehicles.length} vehicles`}
                 </p>
                 <div className="flex gap-2">
                   <button
@@ -354,6 +403,19 @@ export default function VehiclesPage() {
                   ))}
                 </div>
               )}
+              
+              {/* Infinite scroll observer target */}
+              <div ref={observerTarget} className="py-8 flex justify-center">
+                {loadingMore && (
+                  <div className="flex items-center gap-3 text-gray-600">
+                    <Loader2 className="h-6 w-6 animate-spin text-[#EC3827]" />
+                    <span>Loading more vehicles...</span>
+                  </div>
+                )}
+                {!loading && !loadingMore && pagination && !pagination.hasMore && vehicles.length > 0 && (
+                  <p className="text-gray-500">You&apos;ve seen all {pagination.totalCount} vehicles</p>
+                )}
+              </div>
             </div>
           </div>
         </div>

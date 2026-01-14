@@ -18,6 +18,8 @@ export async function GET(request: NextRequest) {
     const categoryId = searchParams.get('categoryId');
     const featured = searchParams.get('featured');
     const brand = searchParams.get('brand');
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '12');
     
     let result;
     try {
@@ -103,7 +105,23 @@ export async function GET(request: NextRequest) {
       vehicles = vehicles.filter((v: any) => v.featured === true);
     }
     
-    return NextResponse.json({ success: true, vehicles });
+    const totalCount = vehicles.length;
+    const totalPages = Math.ceil(totalCount / limit);
+    const offset = (page - 1) * limit;
+    const paginatedVehicles = vehicles.slice(offset, offset + limit);
+    const hasMore = page < totalPages;
+    
+    return NextResponse.json({ 
+      success: true, 
+      vehicles: paginatedVehicles,
+      pagination: {
+        page,
+        limit,
+        totalCount,
+        totalPages,
+        hasMore
+      }
+    });
   } catch (error) {
     console.error('Get vehicles error:', error);
     return NextResponse.json({ success: false, error: String(error) }, { status: 500 });
