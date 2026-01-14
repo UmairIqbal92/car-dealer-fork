@@ -94,13 +94,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${openSans.className} font-sans antialiased`}>
-        <div className="max-w-[1350px] mx-auto">
-          <LocalBusinessSchema />
-          <WebsiteSchema />
-          <LoadingScreen />
-          {children}
-          <Analytics />
-        </div>
+        <LocalBusinessSchema />
+        <WebsiteSchema />
+        <LoadingScreen />
+        {children}
+        <Analytics />
       </body>
     </html>
   )
