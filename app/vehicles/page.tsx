@@ -339,7 +339,7 @@ export default function VehiclesPage() {
                     >
                       <Link
                         href={`/vehicles/${vehicle.id}`}
-                        className={`relative ${viewMode === "list" ? "w-full sm:w-1/3 h-48 sm:h-auto" : "h-56"} bg-gray-200 overflow-hidden group cursor-pointer`}
+                        className={`block relative ${viewMode === "list" ? "w-full sm:w-1/3 h-48 sm:h-auto" : "h-56"} bg-gray-200 overflow-hidden group cursor-pointer`}
                       >
                         {vehicle.images?.[0] ? (
                           <img
