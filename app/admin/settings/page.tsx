@@ -92,8 +92,6 @@ export default function AdminSettingsPage() {
     { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/admin/vehicles", icon: Car, label: "Vehicles" },
     { href: "/admin/categories", icon: FolderOpen, label: "Categories" },
-    { href: "/admin/inquiries", icon: MessageSquare, label: "Inquiries" },
-    { href: "/admin/applications", icon: FileText, label: "Applications" },
     { href: "/admin/settings", icon: Settings, label: "Settings", active: true },
   ]
 

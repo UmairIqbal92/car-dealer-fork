@@ -179,8 +179,6 @@ export default function EditVehiclePage({ params }: { params: Promise<{ id: stri
     { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/admin/vehicles", icon: Car, label: "Vehicles", active: true },
     { href: "/admin/categories", icon: FolderOpen, label: "Categories" },
-    { href: "/admin/inquiries", icon: MessageSquare, label: "Inquiries" },
-    { href: "/admin/applications", icon: FileText, label: "Applications" },
     { href: "/admin/settings", icon: Settings, label: "Settings" },
   ]
 
