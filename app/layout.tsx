@@ -11,23 +11,9 @@ export const metadata: Metadata = {
   title: "Car Junction LLC - Quality Used Cars & Trucks in Dallas, TX",
   description:
     "Find your perfect used car at Car Junction LLC. Professional car dealership in Dallas, TX with wide selection of quality vehicles at unbeatable prices.",
-  generator: "v0.app",
   icons: {
-    icon: [
-      {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
-      },
-      {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: "/apple-icon.png",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
 }
 
