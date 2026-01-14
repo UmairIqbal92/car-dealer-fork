@@ -30,6 +30,7 @@ export default function VehiclesPage() {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [vehicles, setVehicles] = useState<Vehicle[]>([])
   const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "")
   const [filters, setFilters] = useState({
     make: searchParams.get("make") || searchParams.get("brand") || "",
     model: searchParams.get("model") || "",
@@ -51,12 +52,20 @@ export default function VehiclesPage() {
 
   useEffect(() => {
     fetchVehicles()
-  }, [filters])
+  }, [filters, searchQuery])
+
+  useEffect(() => {
+    const urlSearch = searchParams.get("search")
+    if (urlSearch !== searchQuery) {
+      setSearchQuery(urlSearch || "")
+    }
+  }, [searchParams])
 
   const fetchVehicles = async () => {
     setLoading(true)
     try {
       const params = new URLSearchParams()
+      if (searchQuery) params.append("search", searchQuery)
       if (filters.make) params.append("make", filters.make)
       if (filters.model) params.append("model", filters.model)
       if (filters.year) params.append("yearMin", filters.year)
@@ -82,6 +91,7 @@ export default function VehiclesPage() {
   }
 
   const clearFilters = () => {
+    setSearchQuery("")
     setFilters({
       make: "",
       model: "",

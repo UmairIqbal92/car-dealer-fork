@@ -4,6 +4,7 @@ import pool from '@/lib/db';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
+    const search = searchParams.get('search');
     const make = searchParams.get('make');
     const model = searchParams.get('model');
     const bodyType = searchParams.get('bodyType');
@@ -35,20 +36,39 @@ export async function GET(request: NextRequest) {
     
     let vehicles = result.rows || [];
     
+    if (search) {
+      const searchTerms = search.toLowerCase().split(/\s+/).filter(Boolean);
+      vehicles = vehicles.filter((v: any) => {
+        const searchableText = [
+          v.make,
+          v.model,
+          v.name,
+          v.year?.toString(),
+          v.color,
+          v.body_type,
+          v.fuel_type,
+          v.transmission,
+          v.description
+        ].filter(Boolean).join(' ').toLowerCase();
+        
+        return searchTerms.some(term => searchableText.includes(term));
+      });
+    }
+    
     const effectiveMake = make || brand;
     if (effectiveMake) {
       vehicles = vehicles.filter((v: any) => 
-        v.make?.toLowerCase() === effectiveMake.toLowerCase()
+        v.make?.toLowerCase().includes(effectiveMake.toLowerCase())
       );
     }
     if (model) {
       vehicles = vehicles.filter((v: any) => 
-        v.model?.toLowerCase() === model.toLowerCase()
+        v.model?.toLowerCase().includes(model.toLowerCase())
       );
     }
     if (bodyType) {
       vehicles = vehicles.filter((v: any) => 
-        v.body_type?.toLowerCase() === bodyType.toLowerCase()
+        v.body_type?.toLowerCase().includes(bodyType.toLowerCase())
       );
     }
     if (yearMin) {
@@ -68,12 +88,12 @@ export async function GET(request: NextRequest) {
     }
     if (fuelType) {
       vehicles = vehicles.filter((v: any) => 
-        v.fuel_type?.toLowerCase() === fuelType.toLowerCase()
+        v.fuel_type?.toLowerCase().includes(fuelType.toLowerCase())
       );
     }
     if (transmission) {
       vehicles = vehicles.filter((v: any) => 
-        v.transmission?.toLowerCase() === transmission.toLowerCase()
+        v.transmission?.toLowerCase().includes(transmission.toLowerCase())
       );
     }
     if (categoryId) {

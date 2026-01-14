@@ -1,15 +1,27 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Menu, X, Search, Facebook, Twitter, Instagram, Youtube, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
 
 export default function Header() {
+  const router = useRouter()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
   const toggleSearch = () => setIsSearchOpen(!isSearchOpen)
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/vehicles?search=${encodeURIComponent(searchQuery.trim())}`)
+      setIsSearchOpen(false)
+      setSearchQuery("")
+    }
+  }
 
   return (
     <header className="bg-white shadow-sm">
@@ -139,23 +151,23 @@ export default function Header() {
                 <X size={24} className="text-black" />
               </button>
             </div>
-            <div className="relative">
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
-                placeholder="Search by make, model, year..."
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#EC3827] text-black"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by make, model, year, color..."
+                className="w-full px-4 py-3 pr-28 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#EC3827] text-black"
                 autoFocus
               />
-              <Link href="/vehicles">
-                <button
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white px-6 py-2 rounded-lg font-semibold"
-                  style={{ backgroundColor: "#EC3827" }}
-                  onClick={toggleSearch}
-                >
-                  Search
-                </button>
-              </Link>
-            </div>
+              <button
+                type="submit"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-white px-6 py-2 rounded-lg font-semibold"
+                style={{ backgroundColor: "#EC3827" }}
+              >
+                Search
+              </button>
+            </form>
           </div>
         </div>
       )}
