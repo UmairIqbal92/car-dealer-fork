@@ -1,20 +1,23 @@
-import { neon } from '@neondatabase/serverless';
+import { Pool } from '@neondatabase/serverless';
 
-const sql = neon(process.env.DATABASE_URL!);
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-export default sql;
+export async function query(text: string, params?: any[]) {
+  const result = await pool.query(text, params);
+  return result.rows;
+}
 
 export async function initDatabase() {
-  await sql`
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS categories (
       id SERIAL PRIMARY KEY,
       name VARCHAR(100) NOT NULL UNIQUE,
       slug VARCHAR(100) NOT NULL UNIQUE,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `);
 
-  await sql`
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS vehicles (
       id SERIAL PRIMARY KEY,
       name VARCHAR(255) NOT NULL,
@@ -40,9 +43,9 @@ export async function initDatabase() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `);
 
-  await sql`
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS inquiries (
       id SERIAL PRIMARY KEY,
       first_name VARCHAR(100) NOT NULL,
@@ -55,18 +58,18 @@ export async function initDatabase() {
       status VARCHAR(20) DEFAULT 'new',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `);
 
-  await sql`
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS admin_users (
       id SERIAL PRIMARY KEY,
       username VARCHAR(100) NOT NULL UNIQUE,
       password_hash VARCHAR(255) NOT NULL,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `);
 
-  await sql`
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS applications (
       id SERIAL PRIMARY KEY,
       buyer_data JSONB NOT NULL,
@@ -75,7 +78,8 @@ export async function initDatabase() {
       status VARCHAR(20) DEFAULT 'pending',
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
-  `;
+  `);
 }
 
-export { sql };
+export { pool };
+export default pool;

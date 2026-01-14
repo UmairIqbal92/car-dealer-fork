@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import sql from './db';
+import pool from './db';
 
 const ADMIN_SESSION_KEY = 'admin_session';
 
@@ -14,11 +14,12 @@ export async function verifyPassword(password: string, hashedPassword: string): 
 export async function createAdminUser(username: string, password: string) {
   const passwordHash = await hashPassword(password);
   try {
-    await sql`
-      INSERT INTO admin_users (username, password_hash)
-      VALUES (${username}, ${passwordHash})
-      ON CONFLICT (username) DO NOTHING
-    `;
+    await pool.query(
+      `INSERT INTO admin_users (username, password_hash)
+       VALUES ($1, $2)
+       ON CONFLICT (username) DO NOTHING`,
+      [username, passwordHash]
+    );
     return { success: true };
   } catch (error) {
     console.error('Create admin user error:', error);
@@ -27,15 +28,16 @@ export async function createAdminUser(username: string, password: string) {
 }
 
 export async function validateAdminCredentials(username: string, password: string): Promise<boolean> {
-  const users = await sql`
-    SELECT password_hash FROM admin_users WHERE username = ${username}
-  `;
+  const result = await pool.query(
+    'SELECT password_hash FROM admin_users WHERE username = $1',
+    [username]
+  );
   
-  if (users.length === 0) {
+  if (result.rows.length === 0) {
     return false;
   }
   
-  return verifyPassword(password, users[0].password_hash);
+  return verifyPassword(password, result.rows[0].password_hash);
 }
 
 export function generateSessionToken(): string {
