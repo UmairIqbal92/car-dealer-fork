@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Car, FolderOpen, MessageSquare, FileText, LogOut, Plus, Menu, X, LayoutDashboard } from "lucide-react"
+import { Car, FolderOpen, MessageSquare, FileText, LogOut, Plus, Menu, X, LayoutDashboard, Settings } from "lucide-react"
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -75,6 +75,7 @@ export default function AdminDashboard() {
     { href: "/admin/categories", icon: FolderOpen, label: "Categories" },
     { href: "/admin/inquiries", icon: MessageSquare, label: "Inquiries" },
     { href: "/admin/applications", icon: FileText, label: "Applications" },
+    { href: "/admin/settings", icon: Settings, label: "Settings" },
   ]
 
   return (

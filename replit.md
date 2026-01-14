@@ -35,8 +35,10 @@ A complete Next.js web application for Car Junction LLC, a car dealership websit
 
 ## Admin Panel
 - URL: /admin
-- Default credentials: username "admin", password "CarJunction2024!"
-- Features: Vehicle CRUD, category management, inquiry viewer, application viewer
+- Default credentials: username "admin", password "admin123"
+- Features: Vehicle CRUD, category management, inquiry viewer, application viewer, settings (change password)
+- Session-based authentication with HTTP-only cookies
+- Logout functionality available in sidebar
 
 ## Important Configuration
 - Database must be initialized by calling GET /api/init-db before first use

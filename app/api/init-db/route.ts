@@ -5,7 +5,7 @@ import { createAdminUser } from '@/lib/auth';
 export async function GET() {
   try {
     await initDatabase();
-    await createAdminUser('admin', 'CarJunction2024!');
+    await createAdminUser('admin', 'admin123');
     
     return NextResponse.json({ 
       success: true, 

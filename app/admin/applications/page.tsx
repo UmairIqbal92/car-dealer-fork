@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Car, FolderOpen, MessageSquare, FileText, LogOut, Menu, X, LayoutDashboard, ChevronDown, ChevronUp } from "lucide-react"
+import { Car, FolderOpen, MessageSquare, FileText, LogOut, Menu, X, LayoutDashboard, ChevronDown, ChevronUp, Settings } from "lucide-react"
 
 interface Application {
   id: number
@@ -69,6 +69,7 @@ export default function AdminApplicationsPage() {
     { href: "/admin/categories", icon: FolderOpen, label: "Categories" },
     { href: "/admin/inquiries", icon: MessageSquare, label: "Inquiries" },
     { href: "/admin/applications", icon: FileText, label: "Applications", active: true },
+    { href: "/admin/settings", icon: Settings, label: "Settings" },
   ]
 
   return (
