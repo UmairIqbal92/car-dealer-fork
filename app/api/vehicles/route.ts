@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Pool } from '@neondatabase/serverless';
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+import pool from '@/lib/db';
 
 export async function GET(request: NextRequest) {
   try {
