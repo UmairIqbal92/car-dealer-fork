@@ -3,6 +3,8 @@
 ## Overview
 A complete Next.js web application for Car Junction LLC, a car dealership website with an admin panel for managing inventory, categories, and customer inquiries. Features database-driven vehicle listings, working contact/inquiry forms with email integration, search/filter functionality, and responsive design.
 
+**For complete developer documentation, see: `DEVELOPER_DOCS.md`**
+
 ## Tech Stack
 - Next.js 16 (React 19)
 - TypeScript
@@ -12,53 +14,29 @@ A complete Next.js web application for Car Junction LLC, a car dealership websit
 - Radix UI components
 - bcryptjs for password hashing
 
-## Project Structure
-- `app/` - Next.js App Router pages and layouts
-  - `admin/` - Admin panel pages (dashboard, vehicles, categories, inquiries, applications)
-  - `vehicles/` - Vehicle browse and detail pages
-  - `contact/` - Contact page
-  - `finder/` - Car finder form
-  - `apply-online/` - Credit application form
-  - `api/` - API routes
-- `components/` - React components including UI primitives
-- `hooks/` - Custom React hooks
-- `lib/` - Utility functions (db, auth, email)
-- `public/` - Static assets and images
-- `styles/` - Global CSS styles
-
-## Database Schema
-- `vehicles` - Vehicle listings with make, model, year, price, etc.
-- `categories` - Vehicle categories
-- `inquiries` - Customer inquiries
-- `applications` - Credit applications
-- `admin_users` - Admin user accounts
+## Quick Start
+```bash
+npm install
+npm run dev
+# Visit /api/init-db to initialize database
+```
 
 ## Admin Panel
-- URL: /admin
-- Default credentials: username "admin", password "admin123"
-- Features: Vehicle CRUD, category management, inquiry viewer, application viewer, settings (change password)
-- Session-based authentication with HTTP-only cookies
-- Logout functionality available in sidebar
+- **URL:** /admin
+- **Credentials:** username `admin`, password `admin123`
+- Features: Vehicle CRUD, category management, inquiry viewer, application viewer
 
-## Important Configuration
-- Database must be initialized by calling GET /api/init-db before first use
-- All forms send emails to cjunctionllc@gmail.com
-- Resend integration handles all email functionality
-- Admin session uses HTTP-only cookies
+## Key Files
+- `lib/db.ts` - Database connection
+- `lib/email.ts` - Email functions
+- `lib/auth.ts` - Authentication helpers
+- `components/` - React components
+- `app/api/` - API routes
 
-## Development
-- Run `npm run dev` to start the development server
-- The app runs on port 5000
-- Initialize database: GET /api/init-db
+## Brand Color
+Primary: `#C74B3F` (soft coral red)
 
-## Deployment
-- Build: `npm run build`
-- Start: `npm run start`
-
-## Recent Changes (January 2026)
-- Added complete admin panel with authentication
-- Connected database for vehicles, categories, inquiries, applications
-- Integrated Resend email for all forms
-- Updated vehicle browse page to fetch from database
-- Created credit application form with database storage
-- Fixed captcha component hydration issues
+## Contact
+- Email: cjunctionllc@gmail.com
+- WhatsApp: +1 (214) 215-6273
+- Address: 2435 Glenda Lane Ste 4, Dallas, Texas 75229
