@@ -4,7 +4,6 @@ import SearchFilter from "@/components/search-filter"
 import FeaturesSection from "@/components/features-section"
 import BrowseByBrands from "@/components/browse-brands"
 import CarFinderForm from "@/components/car-finder-form"
-import TestimonialsSection from "@/components/testimonials-section"
 import NewsletterBanner from "@/components/newsletter-banner"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
@@ -19,7 +18,6 @@ export default function Home() {
       <BrowseByBrands />
       <FeaturesSection />
       <CarFinderForm />
-      <TestimonialsSection />
       <NewsletterBanner />
       <Footer />
     </main>
