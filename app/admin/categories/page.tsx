@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import { Car, FolderOpen, MessageSquare, FileText, LogOut, Plus, Menu, X, LayoutDashboard, Edit, Trash2, Check, Settings } from "lucide-react"
+import { Car, FolderOpen, MessageSquare, FileText, LogOut, Plus, Menu, X, LayoutDashboard, Edit, Trash2, Check, Settings, Upload, Loader2 } from "lucide-react"
 
 interface Category {
   id: number
@@ -22,6 +22,10 @@ export default function AdminCategoriesPage() {
   const [editingId, setEditingId] = useState<number | null>(null)
   const [editingName, setEditingName] = useState("")
   const [editingLogo, setEditingLogo] = useState("")
+  const [uploading, setUploading] = useState(false)
+  const [editUploading, setEditUploading] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+  const editFileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     checkAuth()
@@ -102,6 +106,64 @@ export default function AdminCategoriesPage() {
     router.push("/admin/login")
   }
 
+  const handleFileUpload = async (file: File, isEdit: boolean = false) => {
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file")
+      return
+    }
+    
+    if (isEdit) {
+      setEditUploading(true)
+    } else {
+      setUploading(true)
+    }
+    
+    try {
+      const response = await fetch("/api/uploads/request-url", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: file.name,
+          size: file.size,
+          contentType: file.type,
+        }),
+      })
+      
+      if (!response.ok) throw new Error("Failed to get upload URL")
+      
+      const { uploadURL, objectPath } = await response.json()
+      
+      const uploadResponse = await fetch(uploadURL, {
+        method: "PUT",
+        body: file,
+        headers: { "Content-Type": file.type },
+      })
+      
+      if (!uploadResponse.ok) throw new Error("Upload failed")
+      
+      if (isEdit) {
+        setEditingLogo(objectPath)
+      } else {
+        setNewLogo(objectPath)
+      }
+    } catch (err) {
+      alert("Failed to upload image")
+    } finally {
+      if (isEdit) {
+        setEditUploading(false)
+      } else {
+        setUploading(false)
+      }
+    }
+  }
+
+  const getImageUrl = (path: string) => {
+    if (path.startsWith("/objects/")) {
+      return `/api${path}`
+    }
+    return path
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -166,30 +228,53 @@ export default function AdminCategoriesPage() {
 
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
           <h3 className="text-lg font-bold text-black mb-4">Add New Category (Brand)</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <input
               type="text"
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
               placeholder="Brand name (e.g., Toyota, Ford)..."
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
             />
-            <input
-              type="text"
-              value={newLogo}
-              onChange={(e) => setNewLogo(e.target.value)}
-              placeholder="Logo URL (PNG/SVG)..."
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-            />
+            <div className="flex items-center gap-2">
+              {newLogo ? (
+                <div className="flex items-center gap-2">
+                  <img src={getImageUrl(newLogo)} alt="Logo preview" className="h-10 w-auto object-contain border rounded" />
+                  <button
+                    type="button"
+                    onClick={() => setNewLogo("")}
+                    className="p-1 text-red-500 hover:text-red-700"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  disabled={uploading}
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  {uploading ? <Loader2 size={18} className="animate-spin" /> : <Upload size={18} />}
+                  {uploading ? "Uploading..." : "Upload Logo"}
+                </button>
+              )}
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], false)}
+                className="hidden"
+              />
+            </div>
             <button
               onClick={handleCreate}
-              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#EC3827] text-white rounded-lg hover:bg-[#d42f1f] transition-colors"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#C74B3F] text-white rounded-lg hover:bg-[#b33f35] transition-colors"
             >
               <Plus size={20} />
               Add Brand
             </button>
           </div>
-          <p className="text-gray-500 text-sm mt-2">Upload brand logos to a hosting service and paste the URL here. Recommended: PNG or SVG format.</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -214,7 +299,7 @@ export default function AdminCategoriesPage() {
                   <tr key={category.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
                       {category.logo ? (
-                        <img src={category.logo} alt={category.name} className="h-10 w-auto object-contain" />
+                        <img src={getImageUrl(category.logo)} alt={category.name} className="h-10 w-auto object-contain" />
                       ) : (
                         <span className="text-gray-400 text-sm">No logo</span>
                       )}
@@ -235,13 +320,33 @@ export default function AdminCategoriesPage() {
                     </td>
                     <td className="px-6 py-4">
                       {editingId === category.id ? (
-                        <input
-                          type="text"
-                          value={editingLogo}
-                          onChange={(e) => setEditingLogo(e.target.value)}
-                          placeholder="Logo URL"
-                          className="px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827] w-full"
-                        />
+                        <div className="flex items-center gap-2">
+                          {editingLogo ? (
+                            <div className="flex items-center gap-2">
+                              <img src={getImageUrl(editingLogo)} alt="Logo preview" className="h-8 w-auto object-contain border rounded" />
+                              <button type="button" onClick={() => setEditingLogo("")} className="p-1 text-red-500 hover:text-red-700">
+                                <X size={14} />
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              type="button"
+                              onClick={() => editFileInputRef.current?.click()}
+                              disabled={editUploading}
+                              className="flex items-center gap-1 px-2 py-1 text-sm border border-gray-300 rounded hover:bg-gray-50"
+                            >
+                              {editUploading ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14} />}
+                              {editUploading ? "..." : "Upload"}
+                            </button>
+                          )}
+                          <input
+                            ref={editFileInputRef}
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => e.target.files?.[0] && handleFileUpload(e.target.files[0], true)}
+                            className="hidden"
+                          />
+                        </div>
                       ) : (
                         <span className="text-gray-500">{category.slug}</span>
                       )}

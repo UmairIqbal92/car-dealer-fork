@@ -4,6 +4,7 @@ import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { Car, FolderOpen, MessageSquare, FileText, LogOut, Menu, X, LayoutDashboard, ArrowLeft, Plus, Trash2, Settings } from "lucide-react"
+import MultiImageUploader from "@/components/multi-image-uploader"
 
 interface Category {
   id: number
@@ -40,7 +41,6 @@ export default function EditVehiclePage({ params }: { params: Promise<{ id: stri
     status: "available"
   })
   const [newFeature, setNewFeature] = useState("")
-  const [newImage, setNewImage] = useState("")
 
   const bodyTypes = ["Sedan", "SUV", "Truck", "Coupe", "Hatchback", "Van", "Convertible", "Wagon"]
   const fuelTypes = ["Gasoline", "Diesel", "Hybrid", "Electric"]
@@ -149,17 +149,6 @@ export default function EditVehiclePage({ params }: { params: Promise<{ id: stri
 
   const removeFeature = (index: number) => {
     setFormData(prev => ({ ...prev, features: prev.features.filter((_, i) => i !== index) }))
-  }
-
-  const addImage = () => {
-    if (newImage.trim()) {
-      setFormData(prev => ({ ...prev, images: [...prev.images, newImage.trim()] }))
-      setNewImage("")
-    }
-  }
-
-  const removeImage = (index: number) => {
-    setFormData(prev => ({ ...prev, images: prev.images.filter((_, i) => i !== index) }))
   }
 
   const handleLogout = async () => {
@@ -465,38 +454,13 @@ export default function EditVehiclePage({ params }: { params: Promise<{ id: stri
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-lg font-bold text-black mb-4">Images (URLs)</h3>
-            <div className="flex gap-2 mb-4">
-              <input
-                type="url"
-                value={newImage}
-                onChange={(e) => setNewImage(e.target.value)}
-                placeholder="Enter image URL..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addImage())}
-              />
-              <button
-                type="button"
-                onClick={addImage}
-                className="px-4 py-2 bg-[#EC3827] text-white rounded-lg hover:bg-[#d42f1f] transition-colors"
-              >
-                <Plus size={20} />
-              </button>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {formData.images.map((image, index) => (
-                <div key={index} className="relative group">
-                  <img src={image} alt={`Vehicle ${index + 1}`} className="w-full h-24 object-cover rounded-lg" />
-                  <button
-                    type="button"
-                    onClick={() => removeImage(index)}
-                    className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-              ))}
-            </div>
+            <h3 className="text-lg font-bold text-black mb-4">Vehicle Images</h3>
+            <MultiImageUploader
+              value={formData.images}
+              onChange={(images) => setFormData(prev => ({ ...prev, images }))}
+              maxImages={10}
+              label=""
+            />
           </div>
 
           <div className="flex justify-end gap-4">
