@@ -13,9 +13,12 @@ export async function initDatabase() {
       id SERIAL PRIMARY KEY,
       name VARCHAR(100) NOT NULL UNIQUE,
       slug VARCHAR(100) NOT NULL UNIQUE,
+      logo VARCHAR(500),
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+  
+  await pool.query(`ALTER TABLE categories ADD COLUMN IF NOT EXISTS logo VARCHAR(500)`).catch(() => {});
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS vehicles (
