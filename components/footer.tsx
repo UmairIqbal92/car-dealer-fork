@@ -133,10 +133,22 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-5" style={{ color: "#C74B3F" }}>
               Address
             </h3>
-            <p className="text-gray-300 text-base leading-relaxed">
+            <p className="text-gray-300 text-base leading-relaxed mb-4">
               2435 Glenda Lane Ste 4<br />
               Dallas, Texas 75229
             </p>
+            <div className="rounded-lg overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.8!2d-96.87!3d32.89!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s2435+Glenda+Ln+Ste+4%2C+Dallas%2C+TX+75229!5e0!3m2!1sen!2sus!4v1609459200000!5m2!1sen!2sus"
+                width="100%"
+                height="120"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Car Junction Location"
+              ></iframe>
+            </div>
           </div>
         </div>
 

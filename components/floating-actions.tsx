@@ -39,10 +39,10 @@ export default function FloatingActions() {
         href="https://wa.me/12142156273"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+        className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Chat on WhatsApp"
       >
-        <WhatsAppIcon size={28} />
+        <WhatsAppIcon size={34} />
       </a>
 
       {showScrollTop && (
