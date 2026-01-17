@@ -1,8 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Open_Sans } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import LoadingScreen from "@/components/loading-screen"
 import { LocalBusinessSchema, WebsiteSchema } from "@/components/structured-data"
 import "./globals.css"
 
@@ -96,9 +94,7 @@ export default function RootLayout({
       <body className={`${openSans.className} font-sans antialiased`}>
         <LocalBusinessSchema />
         <WebsiteSchema />
-        <LoadingScreen />
         {children}
-        <Analytics />
       </body>
     </html>
   )
