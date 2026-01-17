@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { getResendClient } from "@/lib/email"
 
 export async function POST(request: Request) {
   try {
@@ -13,7 +11,7 @@ export async function POST(request: Request) {
 
     const emailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #EC3827; border-bottom: 2px solid #EC3827; padding-bottom: 10px;">
+        <h2 style="color: #C74B3F; border-bottom: 2px solid #C74B3F; padding-bottom: 10px;">
           New Vehicle Export Query
         </h2>
         
@@ -57,8 +55,10 @@ export async function POST(request: Request) {
       </div>
     `
 
-    await resend.emails.send({
-      from: "Car Junction LLC <onboarding@resend.dev>",
+    const { client, fromEmail } = await getResendClient()
+    
+    await client.emails.send({
+      from: fromEmail,
       to: "cjunctionllc@gmail.com",
       subject: `Export Query: ${brand} ${model}`,
       html: emailHtml,
