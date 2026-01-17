@@ -5,7 +5,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function ContactPage() {
   const [submitting, setSubmitting] = useState(false)
@@ -17,6 +17,19 @@ export default function ContactPage() {
     subject: "",
     message: "",
   })
+  const [captchaAnswer, setCaptchaAnswer] = useState("")
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: 0 })
+
+  useEffect(() => {
+    generateCaptcha()
+  }, [])
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 8) + 2
+    const num2 = Math.floor(Math.random() * 8) + 1
+    setCaptcha({ num1, num2, answer: num1 + num2 })
+    setCaptchaAnswer("")
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -25,6 +38,13 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (parseInt(captchaAnswer) !== captcha.answer) {
+      alert("Incorrect answer. Please try again.")
+      generateCaptcha()
+      return
+    }
+
     setSubmitting(true)
 
     try {
@@ -37,6 +57,7 @@ export default function ContactPage() {
       if (res.ok) {
         setSubmitted(true)
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+        generateCaptcha()
       } else {
         alert("Failed to send message. Please try again.")
       }
@@ -269,6 +290,20 @@ export default function ContactPage() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827] resize-none"
                       required
                     ></textarea>
+                  </div>
+
+                  <div className="bg-[#FFF5F4] border-2 border-[#EC3827] p-4 rounded-lg">
+                    <label className="block text-base font-bold text-[#EC3827] mb-2">
+                      Security Check: What is {captcha.num1} + {captcha.num2}? *
+                    </label>
+                    <input
+                      type="number"
+                      value={captchaAnswer}
+                      onChange={(e) => setCaptchaAnswer(e.target.value)}
+                      placeholder="Enter your answer"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      required
+                    />
                   </div>
 
                   <button

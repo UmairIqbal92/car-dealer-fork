@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Search } from "lucide-react"
 
 export default function CarFinderForm() {
@@ -22,6 +22,19 @@ export default function CarFinderForm() {
     email: "",
     terms: false,
   })
+  const [captchaAnswer, setCaptchaAnswer] = useState("")
+  const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: 0 })
+
+  useEffect(() => {
+    generateCaptcha()
+  }, [])
+
+  const generateCaptcha = () => {
+    const num1 = Math.floor(Math.random() * 8) + 2
+    const num2 = Math.floor(Math.random() * 8) + 1
+    setCaptcha({ num1, num2, answer: num1 + num2 })
+    setCaptchaAnswer("")
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
@@ -33,6 +46,13 @@ export default function CarFinderForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (parseInt(captchaAnswer) !== captcha.answer) {
+      alert("Incorrect answer. Please try again.")
+      generateCaptcha()
+      return
+    }
+
     setSubmitting(true)
 
     try {
@@ -56,6 +76,7 @@ export default function CarFinderForm() {
 
       if (res.ok) {
         setSubmitted(true)
+        generateCaptcha()
       } else {
         alert("Failed to submit request. Please try again.")
       }
@@ -270,6 +291,20 @@ export default function CarFinderForm() {
                       />
                     </div>
                   </div>
+                </div>
+
+                <div className="bg-[#FFF5F4] border-2 border-[#EC3827] p-3 rounded-lg">
+                  <label className="block text-sm font-bold text-[#EC3827] mb-2">
+                    Security Check: What is {captcha.num1} + {captcha.num2}? *
+                  </label>
+                  <input
+                    type="number"
+                    value={captchaAnswer}
+                    onChange={(e) => setCaptchaAnswer(e.target.value)}
+                    placeholder="Enter your answer"
+                    className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-white text-black text-base font-semibold focus:outline-none focus:ring-2 focus:ring-red-600"
+                    required
+                  />
                 </div>
 
                 <div className="flex items-center gap-2 pt-1">
