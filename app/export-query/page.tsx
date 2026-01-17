@@ -196,7 +196,7 @@ export default function ExportQueryPage() {
                   value={captchaAnswer}
                   onChange={(e) => setCaptchaAnswer(e.target.value)}
                   placeholder="Your answer"
-                  className="w-40 px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-[#C74B3F] bg-white"
+                  className="flex-1 px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-[#C74B3F] bg-white"
                   required
                 />
                 <button
