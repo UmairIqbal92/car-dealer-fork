@@ -9,6 +9,7 @@ interface Category {
   id: number
   name: string
   slug: string
+  logo: string | null
 }
 
 export default function AdminCategoriesPage() {
@@ -17,8 +18,10 @@ export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([])
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [newCategory, setNewCategory] = useState("")
+  const [newLogo, setNewLogo] = useState("")
   const [editingId, setEditingId] = useState<number | null>(null)
   const [editingName, setEditingName] = useState("")
+  const [editingLogo, setEditingLogo] = useState("")
 
   useEffect(() => {
     checkAuth()
@@ -55,9 +58,10 @@ export default function AdminCategoriesPage() {
       await fetch("/api/categories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: newCategory.trim() })
+        body: JSON.stringify({ name: newCategory.trim(), logo: newLogo.trim() || null })
       })
       setNewCategory("")
+      setNewLogo("")
       fetchCategories()
     } catch (err) {
       console.error("Error creating category:", err)
@@ -71,10 +75,11 @@ export default function AdminCategoriesPage() {
       await fetch(`/api/categories/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: editingName.trim() })
+        body: JSON.stringify({ name: editingName.trim(), logo: editingLogo.trim() || null })
       })
       setEditingId(null)
       setEditingName("")
+      setEditingLogo("")
       fetchCategories()
     } catch (err) {
       console.error("Error updating category:", err)
@@ -160,30 +165,38 @@ export default function AdminCategoriesPage() {
         </div>
 
         <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-          <h3 className="text-lg font-bold text-black mb-4">Add New Category</h3>
-          <div className="flex gap-2">
+          <h3 className="text-lg font-bold text-black mb-4">Add New Category (Brand)</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <input
               type="text"
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              placeholder="Category name..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
-              onKeyPress={(e) => e.key === 'Enter' && handleCreate()}
+              placeholder="Brand name (e.g., Toyota, Ford)..."
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+            />
+            <input
+              type="text"
+              value={newLogo}
+              onChange={(e) => setNewLogo(e.target.value)}
+              placeholder="Logo URL (PNG/SVG)..."
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
             />
             <button
               onClick={handleCreate}
-              className="flex items-center gap-2 px-4 py-2 bg-[#EC3827] text-white rounded-lg hover:bg-[#d42f1f] transition-colors"
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-[#EC3827] text-white rounded-lg hover:bg-[#d42f1f] transition-colors"
             >
               <Plus size={20} />
-              Add
+              Add Brand
             </button>
           </div>
+          <p className="text-gray-500 text-sm mt-2">Upload brand logos to a hosting service and paste the URL here. Recommended: PNG or SVG format.</p>
         </div>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-black">Logo</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-black">Name</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-black">Slug</th>
                 <th className="px-6 py-4 text-right text-sm font-semibold text-black">Actions</th>
@@ -192,27 +205,47 @@ export default function AdminCategoriesPage() {
             <tbody className="divide-y divide-gray-200">
               {categories.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="px-6 py-12 text-center text-gray-500">
-                    No categories found. Add your first category above.
+                  <td colSpan={4} className="px-6 py-12 text-center text-gray-500">
+                    No categories found. Add your first brand above.
                   </td>
                 </tr>
               ) : (
                 categories.map((category) => (
                   <tr key={category.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
+                      {category.logo ? (
+                        <img src={category.logo} alt={category.name} className="h-10 w-auto object-contain" />
+                      ) : (
+                        <span className="text-gray-400 text-sm">No logo</span>
+                      )}
+                    </td>
+                    <td className="px-6 py-4">
                       {editingId === category.id ? (
                         <input
                           type="text"
                           value={editingName}
                           onChange={(e) => setEditingName(e.target.value)}
-                          className="px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          placeholder="Brand name"
+                          className="px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827] w-full"
                           autoFocus
                         />
                       ) : (
                         <span className="font-semibold text-black">{category.name}</span>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-gray-500">{category.slug}</td>
+                    <td className="px-6 py-4">
+                      {editingId === category.id ? (
+                        <input
+                          type="text"
+                          value={editingLogo}
+                          onChange={(e) => setEditingLogo(e.target.value)}
+                          placeholder="Logo URL"
+                          className="px-3 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827] w-full"
+                        />
+                      ) : (
+                        <span className="text-gray-500">{category.slug}</span>
+                      )}
+                    </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end gap-2">
                         {editingId === category.id ? (
@@ -224,7 +257,7 @@ export default function AdminCategoriesPage() {
                               <Check size={18} />
                             </button>
                             <button
-                              onClick={() => { setEditingId(null); setEditingName("") }}
+                              onClick={() => { setEditingId(null); setEditingName(""); setEditingLogo("") }}
                               className="p-2 text-gray-500 hover:text-gray-700 transition-colors"
                             >
                               <X size={18} />
@@ -233,7 +266,7 @@ export default function AdminCategoriesPage() {
                         ) : (
                           <>
                             <button
-                              onClick={() => { setEditingId(category.id); setEditingName(category.name) }}
+                              onClick={() => { setEditingId(category.id); setEditingName(category.name); setEditingLogo(category.logo || "") }}
                               className="p-2 text-gray-500 hover:text-[#EC3827] transition-colors"
                             >
                               <Edit size={18} />
