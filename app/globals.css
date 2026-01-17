@@ -4,42 +4,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated color palette to exact Car Junction brand colors - #EC3827 red and black */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0 0);
+  /* Balanced color palette - softer tones for better readability */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.25 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card-foreground: oklch(0.25 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  /* Primary red #EC3827 for Car Junction branding */
-  --primary: oklch(0.6 0.22 25);
+  --popover-foreground: oklch(0.25 0 0);
+  /* Softer brand red - easier on eyes */
+  --primary: oklch(0.55 0.18 25);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.15 0 0);
+  --secondary: oklch(0.25 0 0);
   --secondary-foreground: oklch(1 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.45 0 0);
-  /* Red accent #EC3827 */
-  --accent: oklch(0.6 0.22 25);
+  --muted: oklch(0.97 0.005 0);
+  --muted-foreground: oklch(0.5 0 0);
+  /* Softer accent */
+  --accent: oklch(0.55 0.18 25);
   --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.6 0.22 25);
+  --destructive: oklch(0.55 0.18 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
+  --border: oklch(0.92 0 0);
   --input: oklch(0.98 0 0);
-  --ring: oklch(0.6 0.22 25);
-  --chart-1: oklch(0.6 0.22 25);
-  --chart-2: oklch(0.15 0 0);
+  --ring: oklch(0.55 0.18 25);
+  --chart-1: oklch(0.55 0.18 25);
+  --chart-2: oklch(0.25 0 0);
   --chart-3: oklch(0.95 0 0);
-  --chart-4: oklch(0.6 0.22 25);
-  --chart-5: oklch(0.15 0 0);
+  --chart-4: oklch(0.55 0.18 25);
+  --chart-5: oklch(0.25 0 0);
   --radius: 0.5rem;
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.15 0 0);
-  --sidebar-primary: oklch(0.6 0.22 25);
+  --sidebar-foreground: oklch(0.25 0 0);
+  --sidebar-primary: oklch(0.55 0.18 25);
   --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
+  --sidebar-accent: oklch(0.25 0 0);
   --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.9 0 0);
-  --sidebar-ring: oklch(0.6 0.22 25);
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: oklch(0.55 0.18 25);
 }
 
 .dark {
@@ -208,13 +208,13 @@
   /* Glow animation */
   @keyframes glow {
     0% {
-      box-shadow: 0 0 5px rgba(236, 56, 39, 0.3);
+      box-shadow: 0 0 5px rgba(199, 75, 63, 0.3);
     }
     50% {
-      box-shadow: 0 0 20px rgba(236, 56, 39, 0.6);
+      box-shadow: 0 0 20px rgba(199, 75, 63, 0.5);
     }
     100% {
-      box-shadow: 0 0 5px rgba(236, 56, 39, 0.3);
+      box-shadow: 0 0 5px rgba(199, 75, 63, 0.3);
     }
   }
 

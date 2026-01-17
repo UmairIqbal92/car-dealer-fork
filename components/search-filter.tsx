@@ -104,7 +104,7 @@ export default function SearchFilter() {
               <select
                 value={filters.make}
                 onChange={(e) => handleFilterChange("make", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Select Make</option>
@@ -122,7 +122,7 @@ export default function SearchFilter() {
               <select
                 value={filters.model}
                 onChange={(e) => handleFilterChange("model", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Select Model</option>
@@ -140,7 +140,7 @@ export default function SearchFilter() {
               <select
                 value={filters.bodyType}
                 onChange={(e) => handleFilterChange("bodyType", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Choose Car Type</option>
@@ -160,7 +160,7 @@ export default function SearchFilter() {
               <select
                 value={filters.yearMin}
                 onChange={(e) => handleFilterChange("yearMin", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Any Year</option>
@@ -178,7 +178,7 @@ export default function SearchFilter() {
               <select
                 value={filters.yearMax}
                 onChange={(e) => handleFilterChange("yearMax", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Any Year</option>
@@ -200,7 +200,7 @@ export default function SearchFilter() {
                   handleFilterChange("priceMin", min || "")
                   handleFilterChange("priceMax", max || "")
                 }}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Any Price</option>
@@ -218,7 +218,7 @@ export default function SearchFilter() {
               <select
                 value={filters.mileageMax}
                 onChange={(e) => handleFilterChange("mileageMax", e.target.value)}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#EC3827] focus:outline-none focus:ring-2 focus:border-transparent"
+                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg bg-gray-50 text-black text-base appearance-none cursor-pointer hover:border-[#C74B3F] focus:outline-none focus:ring-2 focus:border-transparent"
                 style={selectStyle}
               >
                 <option value="">Any Mileage</option>
@@ -235,7 +235,7 @@ export default function SearchFilter() {
               <button
                 onClick={handleSearch}
                 className="w-full text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-all text-base flex items-center justify-center gap-2"
-                style={{ backgroundColor: "#EC3827" }}
+                style={{ backgroundColor: "#C74B3F" }}
               >
                 <Search size={20} />
                 SEARCH NOW

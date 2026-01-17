@@ -118,7 +118,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
       <main className="min-h-screen bg-gray-50">
         <Header />
         <div className="flex items-center justify-center py-40">
-          <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#EC3827] border-t-transparent"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#C74B3F] border-t-transparent"></div>
         </div>
         <Footer />
       </main>
@@ -135,7 +135,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
           <p className="text-gray-500 mb-6">This vehicle may no longer be available.</p>
           <button
             onClick={() => router.push("/vehicles")}
-            className="bg-[#EC3827] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#d42f1f] transition-colors"
+            className="bg-[#C74B3F] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#b33f35] transition-colors"
           >
             Browse All Vehicles
           </button>
@@ -156,7 +156,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
         <div className="max-w-7xl mx-auto">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-700 hover:text-[#EC3827] mb-6 font-semibold cursor-pointer transition-colors"
+            className="flex items-center gap-2 text-gray-700 hover:text-[#C74B3F] mb-6 font-semibold cursor-pointer transition-colors"
           >
             <ArrowLeft size={20} />
             Back to Vehicles
@@ -204,7 +204,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         className={`relative h-16 sm:h-20 rounded-lg overflow-hidden cursor-pointer ${
-                          currentImageIndex === index ? "ring-4 ring-[#EC3827]" : "ring-2 ring-gray-300"
+                          currentImageIndex === index ? "ring-4 ring-[#C74B3F]" : "ring-2 ring-gray-300"
                         }`}
                       >
                         <img
@@ -231,7 +231,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {vehicle.features.map((feature, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-[#EC3827] rounded-full"></div>
+                        <div className="w-2 h-2 bg-[#C74B3F] rounded-full"></div>
                         <span className="text-gray-700">{feature}</span>
                       </div>
                     ))}
@@ -245,7 +245,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                 <h1 className="text-2xl sm:text-3xl font-bold text-black mb-2">
                   {vehicle.year} {vehicle.make} {vehicle.model}
                 </h1>
-                <p className="text-4xl sm:text-5xl font-bold text-[#EC3827] mb-6">${vehicle.price?.toLocaleString()}</p>
+                <p className="text-4xl sm:text-5xl font-bold text-[#C74B3F] mb-6">${vehicle.price?.toLocaleString()}</p>
 
                 <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                   <div className="flex justify-between">
@@ -305,7 +305,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                 <div className="space-y-3">
                   <button
                     onClick={() => setShowInquiryModal(true)}
-                    className="flex items-center justify-center gap-2 w-full bg-[#EC3827] text-white py-4 rounded-lg font-bold text-lg hover:bg-[#d42f1f] transition-colors cursor-pointer"
+                    className="flex items-center justify-center gap-2 w-full bg-[#C74B3F] text-white py-4 rounded-lg font-bold text-lg hover:bg-[#b33f35] transition-colors cursor-pointer"
                   >
                     <MessageSquare size={20} />
                     Inquire Now
@@ -355,53 +355,53 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-sm font-semibold text-black mb-1">
-                    First Name <span className="text-[#EC3827]">*</span>
+                    First Name <span className="text-[#C74B3F]">*</span>
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.firstName}
                     onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold text-black mb-1">
-                    Last Name <span className="text-[#EC3827]">*</span>
+                    Last Name <span className="text-[#C74B3F]">*</span>
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.lastName}
                     onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-black mb-1">
-                  Email <span className="text-[#EC3827]">*</span>
+                  Email <span className="text-[#C74B3F]">*</span>
                 </label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                 />
               </div>
 
               <div>
                 <label className="block text-sm font-semibold text-black mb-1">
-                  Phone <span className="text-[#EC3827]">*</span>
+                  Phone <span className="text-[#C74B3F]">*</span>
                 </label>
                 <input
                   type="tel"
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                 />
               </div>
 
@@ -412,14 +412,14 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder={`I'm interested in the ${vehicle.year} ${vehicle.make} ${vehicle.model}...`}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827] resize-none"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F] resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#EC3827] text-white py-3 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors cursor-pointer disabled:opacity-50"
+                className="w-full bg-[#C74B3F] text-white py-3 rounded-lg font-bold hover:bg-[#b33f35] transition-colors cursor-pointer disabled:opacity-50"
               >
                 {submitting ? "Submitting..." : "Submit Inquiry"}
               </button>

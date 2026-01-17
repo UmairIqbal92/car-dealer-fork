@@ -139,7 +139,7 @@ export default function ApplyOnlinePage() {
               </p>
               <a
                 href="/vehicles"
-                className="inline-block bg-[#EC3827] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors"
+                className="inline-block bg-[#C74B3F] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#b33f35] transition-colors"
               >
                 Browse Vehicles
               </a>
@@ -160,7 +160,7 @@ export default function ApplyOnlinePage() {
       <section className="bg-gradient-to-r from-black via-gray-900 to-black text-white py-16 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-4">
-            <FileText size={40} className="text-[#EC3827]" />
+            <FileText size={40} className="text-[#C74B3F]" />
             <h1 className="text-4xl md:text-5xl font-bold">Apply Online</h1>
           </div>
           <p className="text-gray-300 text-lg">Complete your credit application in minutes</p>
@@ -170,31 +170,31 @@ export default function ApplyOnlinePage() {
       <section className="py-12 px-4 md:px-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-center gap-4 mb-10">
-            <div className={`flex items-center gap-2 ${step >= 1 ? "text-[#EC3827]" : "text-gray-400"}`}>
+            <div className={`flex items-center gap-2 ${step >= 1 ? "text-[#C74B3F]" : "text-gray-400"}`}>
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step >= 1 ? "bg-[#EC3827] text-white" : "bg-gray-200 text-gray-500"
+                step >= 1 ? "bg-[#C74B3F] text-white" : "bg-gray-200 text-gray-500"
               }`}>
                 1
               </div>
               <span className="font-semibold hidden sm:inline">Buyer Info</span>
             </div>
             <div className="w-12 h-1 bg-gray-300 self-center">
-              <div className={`h-full transition-all ${step >= 2 ? "bg-[#EC3827] w-full" : "w-0"}`}></div>
+              <div className={`h-full transition-all ${step >= 2 ? "bg-[#C74B3F] w-full" : "w-0"}`}></div>
             </div>
-            <div className={`flex items-center gap-2 ${step >= 2 ? "text-[#EC3827]" : "text-gray-400"}`}>
+            <div className={`flex items-center gap-2 ${step >= 2 ? "text-[#C74B3F]" : "text-gray-400"}`}>
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step >= 2 ? "bg-[#EC3827] text-white" : "bg-gray-200 text-gray-500"
+                step >= 2 ? "bg-[#C74B3F] text-white" : "bg-gray-200 text-gray-500"
               }`}>
                 2
               </div>
               <span className="font-semibold hidden sm:inline">Employment</span>
             </div>
             <div className="w-12 h-1 bg-gray-300 self-center">
-              <div className={`h-full transition-all ${step >= 3 ? "bg-[#EC3827] w-full" : "w-0"}`}></div>
+              <div className={`h-full transition-all ${step >= 3 ? "bg-[#C74B3F] w-full" : "w-0"}`}></div>
             </div>
-            <div className={`flex items-center gap-2 ${step >= 3 ? "text-[#EC3827]" : "text-gray-400"}`}>
+            <div className={`flex items-center gap-2 ${step >= 3 ? "text-[#C74B3F]" : "text-gray-400"}`}>
               <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                step >= 3 ? "bg-[#EC3827] text-white" : "bg-gray-200 text-gray-500"
+                step >= 3 ? "bg-[#C74B3F] text-white" : "bg-gray-200 text-gray-500"
               }`}>
                 3
               </div>
@@ -216,7 +216,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.firstName}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -227,7 +227,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.lastName}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -238,7 +238,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.email}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -249,7 +249,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.cellPhone}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -260,7 +260,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.dateOfBirth}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -272,7 +272,7 @@ export default function ApplyOnlinePage() {
                       onChange={handleBuyerChange}
                       placeholder="XXX-XX-XXXX"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                 </div>
@@ -287,7 +287,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.streetAddress}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -298,7 +298,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.city}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
@@ -309,7 +309,7 @@ export default function ApplyOnlinePage() {
                         value={buyerData.state}
                         onChange={handleBuyerChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       >
                         <option value="">Select</option>
                         {states.map(s => (
@@ -325,7 +325,7 @@ export default function ApplyOnlinePage() {
                         value={buyerData.zipCode}
                         onChange={handleBuyerChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       />
                     </div>
                   </div>
@@ -337,7 +337,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.timeAtAddress}
                       onChange={handleBuyerChange}
                       placeholder="e.g., 2 years"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -348,7 +348,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.monthlyRent}
                       onChange={handleBuyerChange}
                       placeholder="$"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                 </div>
@@ -357,7 +357,7 @@ export default function ApplyOnlinePage() {
                   <button
                     type="button"
                     onClick={() => setStep(2)}
-                    className="bg-[#EC3827] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors"
+                    className="bg-[#C74B3F] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#b33f35] transition-colors"
                   >
                     Continue
                   </button>
@@ -378,7 +378,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.employerName}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -388,7 +388,7 @@ export default function ApplyOnlinePage() {
                       name="employerPhone"
                       value={buyerData.employerPhone}
                       onChange={handleBuyerChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -399,7 +399,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.jobTitle}
                       onChange={handleBuyerChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -410,7 +410,7 @@ export default function ApplyOnlinePage() {
                       value={buyerData.timeAtJob}
                       onChange={handleBuyerChange}
                       placeholder="e.g., 3 years"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                   <div>
@@ -422,7 +422,7 @@ export default function ApplyOnlinePage() {
                       onChange={handleBuyerChange}
                       placeholder="$"
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
                 </div>
@@ -434,7 +434,7 @@ export default function ApplyOnlinePage() {
                       id="hasCoBuyer"
                       checked={hasCoBuyer}
                       onChange={(e) => setHasCoBuyer(e.target.checked)}
-                      className="w-5 h-5 accent-[#EC3827]"
+                      className="w-5 h-5 accent-[#C74B3F]"
                     />
                     <label htmlFor="hasCoBuyer" className="text-black font-semibold">Add a Co-Buyer</label>
                   </div>
@@ -452,7 +452,7 @@ export default function ApplyOnlinePage() {
                           value={coBuyerData.firstName}
                           onChange={handleCoBuyerChange}
                           required={hasCoBuyer}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                       <div>
@@ -463,7 +463,7 @@ export default function ApplyOnlinePage() {
                           value={coBuyerData.lastName}
                           onChange={handleCoBuyerChange}
                           required={hasCoBuyer}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                       <div>
@@ -474,7 +474,7 @@ export default function ApplyOnlinePage() {
                           value={coBuyerData.email}
                           onChange={handleCoBuyerChange}
                           required={hasCoBuyer}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                       <div>
@@ -485,7 +485,7 @@ export default function ApplyOnlinePage() {
                           value={coBuyerData.cellPhone}
                           onChange={handleCoBuyerChange}
                           required={hasCoBuyer}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                     </div>
@@ -503,7 +503,7 @@ export default function ApplyOnlinePage() {
                   <button
                     type="button"
                     onClick={() => setStep(3)}
-                    className="bg-[#EC3827] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors"
+                    className="bg-[#C74B3F] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#b33f35] transition-colors"
                   >
                     Review Application
                   </button>
@@ -577,8 +577,8 @@ export default function ApplyOnlinePage() {
                   </p>
                 </div>
 
-                <div className="bg-[#FFF5F4] border-2 border-[#EC3827] p-4 rounded-lg mb-6">
-                  <label className="block text-base font-bold text-[#EC3827] mb-2">
+                <div className="bg-[#FFF5F4] border-2 border-[#C74B3F] p-4 rounded-lg mb-6">
+                  <label className="block text-base font-bold text-[#C74B3F] mb-2">
                     Security Check: What is {captcha.num1} + {captcha.num2}? *
                   </label>
                   <input
@@ -586,7 +586,7 @@ export default function ApplyOnlinePage() {
                     value={captchaAnswer}
                     onChange={(e) => setCaptchaAnswer(e.target.value)}
                     placeholder="Enter your answer"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     required
                   />
                 </div>
@@ -602,7 +602,7 @@ export default function ApplyOnlinePage() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="bg-[#EC3827] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors disabled:opacity-50"
+                    className="bg-[#C74B3F] text-white px-8 py-3 rounded-lg font-bold hover:bg-[#b33f35] transition-colors disabled:opacity-50"
                   >
                     {submitting ? "Submitting..." : "Submit Application"}
                   </button>

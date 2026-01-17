@@ -138,7 +138,7 @@ export default function ExportQueryPage() {
             >
               Export to CSV
             </button>
-            <label className="px-4 py-2 bg-[#EC3827] text-white rounded-lg hover:bg-[#d63020] transition-colors text-sm font-medium cursor-pointer">
+            <label className="px-4 py-2 bg-[#C74B3F] text-white rounded-lg hover:bg-[#d63020] transition-colors text-sm font-medium cursor-pointer">
               Import from CSV
               <input type="file" accept=".csv" onChange={handleImport} className="hidden" />
             </label>
@@ -154,7 +154,7 @@ export default function ExportQueryPage() {
                   value={formData.brand}
                   onChange={handleChange}
                   placeholder="e.g. Toyota"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                   required
                 />
               </div>
@@ -166,7 +166,7 @@ export default function ExportQueryPage() {
                   value={formData.model}
                   onChange={handleChange}
                   placeholder="e.g. Camry"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                   required
                 />
               </div>
@@ -181,7 +181,7 @@ export default function ExportQueryPage() {
                   value={formData.budget}
                   onChange={handleChange}
                   placeholder="e.g. $15,000"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                 />
               </div>
               <div>
@@ -192,7 +192,7 @@ export default function ExportQueryPage() {
                   value={formData.miles}
                   onChange={handleChange}
                   placeholder="e.g. Under 50,000"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                   required
                 />
               </div>
@@ -207,7 +207,7 @@ export default function ExportQueryPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                   required
                 />
               </div>
@@ -219,7 +219,7 @@ export default function ExportQueryPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="(xxx) xxx-xxxx"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                   required
                 />
               </div>
@@ -233,7 +233,7 @@ export default function ExportQueryPage() {
                 onChange={handleChange}
                 rows={4}
                 placeholder="Any additional details about the vehicle you're looking for..."
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent resize-none"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent resize-none"
               />
             </div>
 
@@ -246,7 +246,7 @@ export default function ExportQueryPage() {
                 value={captchaAnswer}
                 onChange={(e) => setCaptchaAnswer(e.target.value)}
                 placeholder="Your answer"
-                className="w-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#EC3827] focus:border-transparent"
+                className="w-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
                 required
               />
             </div>
@@ -266,7 +266,7 @@ export default function ExportQueryPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-4 bg-[#EC3827] text-white rounded-lg font-bold hover:bg-[#d63020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-4 bg-[#C74B3F] text-white rounded-lg font-bold hover:bg-[#d63020] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending..." : "Send Query"}
             </button>

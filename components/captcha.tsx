@@ -71,7 +71,7 @@ export default function Captcha({ onVerify }: CaptchaProps) {
           value={userAnswer}
           onChange={handleChange}
           placeholder="Enter answer"
-          className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+          className="flex-1 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
           required
         />
         <button

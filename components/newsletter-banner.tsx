@@ -7,7 +7,7 @@ export default function NewsletterBanner() {
         <div className="relative -mb-24 md:-mb-28 z-10">
           <div
             className="rounded-xl shadow-2xl py-6 px-6 md:py-8 md:px-12 text-white max-w-6xl mx-auto"
-            style={{ backgroundColor: "#EC3827" }}
+            style={{ backgroundColor: "#C74B3F" }}
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-10">
               {/* Logo */}

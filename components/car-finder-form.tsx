@@ -117,7 +117,7 @@ export default function CarFinderForm() {
                   terms: false,
                 })
               }}
-              className="text-[#EC3827] font-semibold hover:underline"
+              className="text-[#C74B3F] font-semibold hover:underline"
             >
               Submit another request
             </button>
@@ -293,8 +293,8 @@ export default function CarFinderForm() {
                   </div>
                 </div>
 
-                <div className="bg-[#FFF5F4] border-2 border-[#EC3827] p-3 rounded-lg">
-                  <label className="block text-sm font-bold text-[#EC3827] mb-2">
+                <div className="bg-[#FFF5F4] border-2 border-[#C74B3F] p-3 rounded-lg">
+                  <label className="block text-sm font-bold text-[#C74B3F] mb-2">
                     Security Check: What is {captcha.num1} + {captcha.num2}? *
                   </label>
                   <input

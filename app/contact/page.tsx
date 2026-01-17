@@ -91,7 +91,7 @@ export default function ContactPage() {
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     <MapPin size={26} className="text-white" />
                   </div>
@@ -107,13 +107,13 @@ export default function ContactPage() {
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     <Phone size={26} className="text-white" />
                   </div>
                   <div>
                     <h3 className="font-bold text-black text-lg mb-2">Phone Number</h3>
-                    <a href="tel:2142156273" className="text-gray-700 hover:text-[#EC3827] transition-colors text-lg">
+                    <a href="tel:2142156273" className="text-gray-700 hover:text-[#C74B3F] transition-colors text-lg">
                       (214) 215-6273
                     </a>
                   </div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     <Mail size={26} className="text-white" />
                   </div>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                     <h3 className="font-bold text-black text-lg mb-2">Email Address</h3>
                     <a
                       href="mailto:cjunctionllc@gmail.com"
-                      className="text-gray-700 hover:text-[#EC3827] transition-colors break-all"
+                      className="text-gray-700 hover:text-[#C74B3F] transition-colors break-all"
                     >
                       cjunctionllc@gmail.com
                     </a>
@@ -140,7 +140,7 @@ export default function ContactPage() {
                 <div className="flex gap-5">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     <Clock size={26} className="text-white" />
                   </div>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                     aria-label="Facebook"
                   >
                     <Facebook size={22} />
@@ -173,7 +173,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                     aria-label="Instagram"
                   >
                     <Instagram size={22} />
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                     aria-label="YouTube"
                   >
                     <Youtube size={22} />
@@ -220,7 +220,7 @@ export default function ContactPage() {
                   <p className="text-gray-600 mb-6">Thank you for contacting us. We'll get back to you soon.</p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="text-[#EC3827] font-semibold hover:underline"
+                    className="text-[#C74B3F] font-semibold hover:underline"
                   >
                     Send another message
                   </button>
@@ -235,7 +235,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="John Doe"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       required
                     />
                   </div>
@@ -248,7 +248,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="john@example.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       required
                     />
                   </div>
@@ -261,7 +261,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="(214) 215-6273"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       required
                     />
                   </div>
@@ -274,7 +274,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleInputChange}
                       placeholder="How can we help you?"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       required
                     />
                   </div>
@@ -287,13 +287,13 @@ export default function ContactPage() {
                       onChange={handleInputChange}
                       placeholder="Your message here..."
                       rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827] resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F] resize-none"
                       required
                     ></textarea>
                   </div>
 
-                  <div className="bg-[#FFF5F4] border-2 border-[#EC3827] p-4 rounded-lg">
-                    <label className="block text-base font-bold text-[#EC3827] mb-2">
+                  <div className="bg-[#FFF5F4] border-2 border-[#C74B3F] p-4 rounded-lg">
+                    <label className="block text-base font-bold text-[#C74B3F] mb-2">
                       Security Check: What is {captcha.num1} + {captcha.num2}? *
                     </label>
                     <input
@@ -301,7 +301,7 @@ export default function ContactPage() {
                       value={captchaAnswer}
                       onChange={(e) => setCaptchaAnswer(e.target.value)}
                       placeholder="Enter your answer"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-black text-lg font-semibold focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       required
                     />
                   </div>
@@ -310,7 +310,7 @@ export default function ContactPage() {
                     type="submit"
                     disabled={submitting}
                     className="w-full text-white px-6 py-4 rounded-lg font-bold hover:opacity-90 transition-colors text-lg disabled:opacity-50"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     {submitting ? "SENDING..." : "SEND MESSAGE"}
                   </button>

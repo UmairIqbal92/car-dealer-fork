@@ -172,7 +172,7 @@ export default function VehiclesPage() {
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-lg p-5 sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
                 <div className="flex items-center gap-2 mb-5">
-                  <SlidersHorizontal size={22} className="text-[#EC3827]" />
+                  <SlidersHorizontal size={22} className="text-[#C74B3F]" />
                   <h2 className="text-xl font-bold text-black">Filters</h2>
                 </div>
 
@@ -221,7 +221,7 @@ export default function VehiclesPage() {
                         placeholder="$0"
                         value={filters.priceMin}
                         onChange={(e) => handleFilterChange("priceMin", e.target.value)}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       />
                     </div>
                     <div>
@@ -231,7 +231,7 @@ export default function VehiclesPage() {
                         placeholder="Any"
                         value={filters.priceMax}
                         onChange={(e) => handleFilterChange("priceMax", e.target.value)}
-                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                       />
                     </div>
                   </div>
@@ -243,7 +243,7 @@ export default function VehiclesPage() {
                       placeholder="Any"
                       value={filters.mileageMax}
                       onChange={(e) => handleFilterChange("mileageMax", e.target.value)}
-                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                      className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                     />
                   </div>
 
@@ -301,13 +301,13 @@ export default function VehiclesPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setViewMode("grid")}
-                    className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === "grid" ? "bg-[#EC3827] text-white" : "bg-white text-black hover:bg-gray-100"}`}
+                    className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === "grid" ? "bg-[#C74B3F] text-white" : "bg-white text-black hover:bg-gray-100"}`}
                   >
                     <Grid3x3 size={20} />
                   </button>
                   <button
                     onClick={() => setViewMode("list")}
-                    className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === "list" ? "bg-[#EC3827] text-white" : "bg-white text-black hover:bg-gray-100"}`}
+                    className={`p-2 rounded-lg cursor-pointer transition-colors ${viewMode === "list" ? "bg-[#C74B3F] text-white" : "bg-white text-black hover:bg-gray-100"}`}
                   >
                     <List size={20} />
                   </button>
@@ -316,7 +316,7 @@ export default function VehiclesPage() {
 
               {loading ? (
                 <div className="flex items-center justify-center py-20">
-                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#EC3827] border-t-transparent"></div>
+                  <div className="animate-spin rounded-full h-12 w-12 border-4 border-[#C74B3F] border-t-transparent"></div>
                 </div>
               ) : vehicles.length === 0 ? (
                 <div className="bg-white rounded-xl shadow-lg p-12 text-center">
@@ -353,7 +353,7 @@ export default function VehiclesPage() {
                           </div>
                         )}
                         {vehicle.featured && (
-                          <div className="absolute top-3 right-3 bg-[#EC3827] text-white px-3 py-1 rounded-full text-sm font-bold">
+                          <div className="absolute top-3 right-3 bg-[#C74B3F] text-white px-3 py-1 rounded-full text-sm font-bold">
                             Featured
                           </div>
                         )}
@@ -361,7 +361,7 @@ export default function VehiclesPage() {
 
                       <div className={`p-6 ${viewMode === "list" ? "w-full sm:w-2/3" : ""}`}>
                         <Link href={`/vehicles/${vehicle.id}`} className="cursor-pointer">
-                          <h3 className="font-bold text-xl text-black mb-3 hover:text-[#EC3827] transition-colors">
+                          <h3 className="font-bold text-xl text-black mb-3 hover:text-[#C74B3F] transition-colors">
                             {vehicle.year} {vehicle.make} {vehicle.model}
                           </h3>
                         </Link>
@@ -388,12 +388,12 @@ export default function VehiclesPage() {
                         </div>
 
                         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                          <span className="text-2xl md:text-3xl font-bold text-[#EC3827]">
+                          <span className="text-2xl md:text-3xl font-bold text-[#C74B3F]">
                             ${vehicle.price?.toLocaleString() || 0}
                           </span>
                           <Link
                             href={`/vehicles/${vehicle.id}`}
-                            className="bg-[#EC3827] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-[#d42f1f] transition-colors cursor-pointer"
+                            className="bg-[#C74B3F] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg font-semibold hover:bg-[#b33f35] transition-colors cursor-pointer"
                           >
                             View Details
                           </Link>
@@ -408,7 +408,7 @@ export default function VehiclesPage() {
               <div ref={observerTarget} className="py-8 flex justify-center">
                 {loadingMore && (
                   <div className="flex items-center gap-3 text-gray-600">
-                    <Loader2 className="h-6 w-6 animate-spin text-[#EC3827]" />
+                    <Loader2 className="h-6 w-6 animate-spin text-[#C74B3F]" />
                     <span>Loading more vehicles...</span>
                   </div>
                 )}

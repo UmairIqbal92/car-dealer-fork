@@ -40,11 +40,11 @@ export default function BrowseByBrands() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-3 mb-3">
-              <div className="w-12 h-1" style={{ backgroundColor: "#EC3827" }}></div>
-              <p className="font-semibold text-sm tracking-widest uppercase" style={{ color: "#EC3827" }}>
+              <div className="w-12 h-1" style={{ backgroundColor: "#C74B3F" }}></div>
+              <p className="font-semibold text-sm tracking-widest uppercase" style={{ color: "#C74B3F" }}>
                 Find Your Car By Car Brand
               </p>
-              <div className="w-12 h-1" style={{ backgroundColor: "#EC3827" }}></div>
+              <div className="w-12 h-1" style={{ backgroundColor: "#C74B3F" }}></div>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Browse By Brands</h2>
           </div>
@@ -70,11 +70,11 @@ export default function BrowseByBrands() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <div className="w-12 h-1" style={{ backgroundColor: "#EC3827" }}></div>
-            <p className="font-semibold text-sm tracking-widest uppercase" style={{ color: "#EC3827" }}>
+            <div className="w-12 h-1" style={{ backgroundColor: "#C74B3F" }}></div>
+            <p className="font-semibold text-sm tracking-widest uppercase" style={{ color: "#C74B3F" }}>
               Find Your Car By Car Brand
             </p>
-            <div className="w-12 h-1" style={{ backgroundColor: "#EC3827" }}></div>
+            <div className="w-12 h-1" style={{ backgroundColor: "#C74B3F" }}></div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">Browse By Brands</h2>
         </div>
@@ -114,7 +114,7 @@ export default function BrowseByBrands() {
 
                 <div
                   className="absolute bottom-4 right-4 text-white rounded-full p-3 opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300 z-20"
-                  style={{ backgroundColor: "#EC3827" }}
+                  style={{ backgroundColor: "#C74B3F" }}
                 >
                   <ArrowRight size={18} />
                 </div>
@@ -127,7 +127,7 @@ export default function BrowseByBrands() {
           <Link href="/vehicles">
             <button
               className="inline-flex items-center gap-2 text-white px-10 py-4 rounded-lg font-bold hover:opacity-90 transition-all group text-lg"
-              style={{ backgroundColor: "#EC3827" }}
+              style={{ backgroundColor: "#C74B3F" }}
             >
               VIEW ALL
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />

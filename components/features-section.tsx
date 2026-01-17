@@ -13,7 +13,7 @@ export default function FeaturesSection() {
           <div className="lg:col-span-3 flex">
             <div className="bg-black text-white rounded-2xl p-8 flex flex-col justify-between w-full shadow-2xl">
               <div>
-                <div className="w-14 h-14 bg-[#EC3827] rounded-xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-[#C74B3F] rounded-xl flex items-center justify-center mb-6">
                   <Car size={28} className="text-white" />
                 </div>
                 <h2 className="text-2xl font-bold mb-4 leading-tight">
@@ -24,7 +24,7 @@ export default function FeaturesSection() {
                 </p>
               </div>
               <Link href="/vehicles">
-                <button className="w-full flex items-center justify-center gap-2 bg-[#EC3827] text-white px-6 py-4 rounded-xl font-bold text-sm hover:bg-[#d42f1f] transition-all duration-300 shadow-lg hover:shadow-xl">
+                <button className="w-full flex items-center justify-center gap-2 bg-[#C74B3F] text-white px-6 py-4 rounded-xl font-bold text-sm hover:bg-[#b33f35] transition-all duration-300 shadow-lg hover:shadow-xl">
                   View Inventory
                   <ArrowRight size={18} />
                 </button>
@@ -37,18 +37,18 @@ export default function FeaturesSection() {
             {/* Financing Card */}
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 flex-1 hover:shadow-xl transition-all duration-300 group">
               <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#EC3827] to-[#ff6b5b] rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#C74B3F] to-[#ff6b5b] rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                   <CreditCard size={24} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#EC3827] transition-colors">
+                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#C74B3F] transition-colors">
                     WE CAN GET YOU FINANCED
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     With relations with multiple lenders, we are bound to get you financed! Good Credit, Bad Credit, First Time Buyer? Our lenders work with all types of scores.
                   </p>
                   <Link href="/apply-online">
-                    <button className="inline-flex items-center gap-2 bg-[#EC3827] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#d42f1f] transition-all duration-300 shadow-md hover:shadow-lg">
+                    <button className="inline-flex items-center gap-2 bg-[#C74B3F] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#b33f35] transition-all duration-300 shadow-md hover:shadow-lg">
                       Get Approved
                       <ArrowRight size={16} />
                     </button>
@@ -60,18 +60,18 @@ export default function FeaturesSection() {
             {/* Help Find Card */}
             <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 flex-1 hover:shadow-xl transition-all duration-300 group">
               <div className="flex items-start gap-5">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#EC3827] to-[#ff6b5b] rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
+                <div className="w-12 h-12 bg-gradient-to-br from-[#C74B3F] to-[#ff6b5b] rounded-xl flex items-center justify-center flex-shrink-0 shadow-md">
                   <Search size={24} className="text-white" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#EC3827] transition-colors">
+                  <h3 className="text-lg font-bold text-black mb-2 group-hover:text-[#C74B3F] transition-colors">
                     WE CAN HELP YOU FIND IT!
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     Do you have questions or comments for us? We'd love to hear them! Fill out the form and we will get back to you as soon as possible.
                   </p>
                   <Link href="/contact">
-                    <button className="inline-flex items-center gap-2 bg-[#EC3827] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#d42f1f] transition-all duration-300 shadow-md hover:shadow-lg">
+                    <button className="inline-flex items-center gap-2 bg-[#C74B3F] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#b33f35] transition-all duration-300 shadow-md hover:shadow-lg">
                       Contact Us
                       <ArrowRight size={16} />
                     </button>
@@ -84,7 +84,7 @@ export default function FeaturesSection() {
           {/* Right side - Red car image */}
           <div className="lg:col-span-4 flex items-center justify-center">
             <div className="relative w-full">
-              <div className="absolute -inset-4 bg-gradient-to-r from-[#EC3827]/10 to-transparent rounded-3xl blur-2xl"></div>
+              <div className="absolute -inset-4 bg-gradient-to-r from-[#C74B3F]/10 to-transparent rounded-3xl blur-2xl"></div>
               <img
                 src="/images/car.png"
                 alt="Red car"

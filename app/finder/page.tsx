@@ -118,7 +118,7 @@ export default function CarFinderPage() {
               </p>
               <a
                 href="/vehicles"
-                className="inline-block bg-[#EC3827] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#d42f1f] transition-colors"
+                className="inline-block bg-[#C74B3F] text-white px-8 py-4 rounded-lg font-bold hover:bg-[#b33f35] transition-colors"
               >
                 Browse Current Inventory
               </a>
@@ -164,7 +164,7 @@ export default function CarFinderPage() {
               <div className="p-8 md:p-12">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#EC3827]">
+                    <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#C74B3F]">
                       VEHICLE PREFERENCES
                     </h2>
                     <div className="space-y-4">
@@ -216,7 +216,7 @@ export default function CarFinderPage() {
                           onChange={handleChange}
                           placeholder="e.g., 50000"
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
@@ -241,14 +241,14 @@ export default function CarFinderPage() {
                           onChange={handleChange}
                           placeholder="e.g., Leather seats, Sunroof, Navigation..."
                           rows={3}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#EC3827]">
+                    <h2 className="text-2xl font-bold text-black mb-6 pb-3 border-b-2 border-[#C74B3F]">
                       CONTACT INFORMATION
                     </h2>
                     <div className="space-y-4">
@@ -261,7 +261,7 @@ export default function CarFinderPage() {
                             value={formData.firstName}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                           />
                         </div>
 
@@ -273,7 +273,7 @@ export default function CarFinderPage() {
                             value={formData.lastName}
                             onChange={handleChange}
                             required
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                           />
                         </div>
                       </div>
@@ -286,7 +286,7 @@ export default function CarFinderPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
@@ -298,7 +298,7 @@ export default function CarFinderPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
                     </div>
@@ -314,7 +314,7 @@ export default function CarFinderPage() {
                       onChange={handleChange}
                       required
                       className="w-5 h-5 mt-1 cursor-pointer"
-                      style={{ accentColor: "#EC3827" }}
+                      style={{ accentColor: "#C74B3F" }}
                     />
                     <span className="text-sm text-gray-700 leading-relaxed">
                       I agree to the terms and policies and consent to be contacted by Car Junction LLC
@@ -325,7 +325,7 @@ export default function CarFinderPage() {
                     type="submit"
                     disabled={!isCaptchaValid || submitting}
                     className="w-full text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{ backgroundColor: "#EC3827" }}
+                    style={{ backgroundColor: "#C74B3F" }}
                   >
                     {submitting ? "SUBMITTING..." : "SUBMIT REQUEST"}
                   </button>

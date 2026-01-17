@@ -52,7 +52,7 @@ export default function AdvancedSelect({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#EC3827] cursor-pointer hover:bg-gray-100 transition-colors"
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-[#C74B3F] cursor-pointer hover:bg-gray-100 transition-colors"
       >
         <span className={value ? "text-black" : "text-gray-500"}>{value || placeholder}</span>
         <ChevronDown size={20} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
@@ -69,7 +69,7 @@ export default function AdvancedSelect({
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder="Search..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#EC3827]"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                   onClick={(e) => e.stopPropagation()}
                 />
               </div>
@@ -82,7 +82,7 @@ export default function AdvancedSelect({
                   key={index}
                   type="button"
                   onClick={() => handleSelect(option)}
-                  className="w-full px-4 py-2 text-left hover:bg-red-50 hover:text-[#EC3827] transition-colors text-black cursor-pointer"
+                  className="w-full px-4 py-2 text-left hover:bg-red-50 hover:text-[#C74B3F] transition-colors text-black cursor-pointer"
                 >
                   {option}
                 </button>

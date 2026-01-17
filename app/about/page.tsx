@@ -91,26 +91,26 @@ export default function AboutPage() {
               >
                 <div
                   className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-lg"
-                  style={{ backgroundColor: "#EC3827" }}
+                  style={{ backgroundColor: "#C74B3F" }}
                 >
                   {member.initial}
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
-                <p className="text-[#EC3827] font-semibold mb-6 text-lg">{member.position}</p>
+                <p className="text-[#C74B3F] font-semibold mb-6 text-lg">{member.position}</p>
 
                 <div className="space-y-4 text-left">
                   <a
                     href={`tel:${member.phone.replace(/[^0-9]/g, "")}`}
-                    className="flex items-center gap-3 text-gray-700 hover:text-[#EC3827] transition-colors"
+                    className="flex items-center gap-3 text-gray-700 hover:text-[#C74B3F] transition-colors"
                   >
-                    <Phone size={20} className="text-[#EC3827]" />
+                    <Phone size={20} className="text-[#C74B3F]" />
                     <span className="text-base">{member.phone}</span>
                   </a>
                   <a
                     href={`mailto:${member.email}`}
-                    className="flex items-center gap-3 text-gray-700 hover:text-[#EC3827] transition-colors"
+                    className="flex items-center gap-3 text-gray-700 hover:text-[#C74B3F] transition-colors"
                   >
-                    <Mail size={20} className="text-[#EC3827]" />
+                    <Mail size={20} className="text-[#C74B3F]" />
                     <span className="break-all text-base">{member.email}</span>
                   </a>
                 </div>
@@ -124,7 +124,7 @@ export default function AboutPage() {
       <section className="bg-gray-50 py-24 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-2xl shadow-2xl p-12 text-center">
-            <MapPin size={48} className="text-[#EC3827] mx-auto mb-6" />
+            <MapPin size={48} className="text-[#C74B3F] mx-auto mb-6" />
             <h2 className="text-4xl font-bold text-black mb-6">Visit Our Dealership</h2>
             <p className="text-gray-700 text-xl mb-8 leading-relaxed">
               2435 Glenda Lane Ste 4
@@ -137,7 +137,7 @@ export default function AboutPage() {
             <Link href="/contact">
               <button
                 className="text-white px-10 py-4 rounded-lg font-bold hover:opacity-90 transition-all text-lg btn-hover-lift"
-                style={{ backgroundColor: "#EC3827" }}
+                style={{ backgroundColor: "#C74B3F" }}
               >
                 Contact Us Today
               </button>
@@ -156,7 +156,7 @@ export default function AboutPage() {
           <Link href="/apply">
             <button
               className="text-white px-10 py-4 rounded-lg font-bold hover:opacity-90 transition-all text-lg btn-hover-lift"
-              style={{ backgroundColor: "#EC3827" }}
+              style={{ backgroundColor: "#C74B3F" }}
             >
               Apply Online
             </button>

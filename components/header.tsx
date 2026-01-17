@@ -26,7 +26,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm">
       {/* Top Bar */}
-      <div className="hidden md:block py-3 px-6 animate-slideDown" style={{ backgroundColor: "#EC3827" }}>
+      <div className="hidden md:block py-3 px-6 animate-slideDown" style={{ backgroundColor: "#C74B3F" }}>
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex gap-4">
             <a
@@ -91,25 +91,25 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-8">
-          <Link href="/" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Home
           </Link>
-          <Link href="/vehicles" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/vehicles" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Browse Vehicles
           </Link>
-          <Link href="/finder" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/finder" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Car Finder
           </Link>
-          <Link href="/apply" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/apply" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Apply Online
           </Link>
-          <Link href="/about" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/about" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             About Us
           </Link>
-          <Link href="/contact" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/contact" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Contact Us
           </Link>
-          <Link href="/export-query" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+          <Link href="/export-query" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Export Query
           </Link>
         </div>
@@ -118,7 +118,7 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <button
             onClick={toggleSearch}
-            className="p-2 hover:text-[#EC3827] transition-colors hidden md:block"
+            className="p-2 hover:text-[#C74B3F] transition-colors hidden md:block"
             aria-label="Search"
           >
             <Search size={22} className="text-black" />
@@ -126,7 +126,7 @@ export default function Header() {
           <Link
             href="/finder"
             className="hidden md:inline-block text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-all btn-hover-lift text-base"
-            style={{ backgroundColor: "#EC3827" }}
+            style={{ backgroundColor: "#C74B3F" }}
           >
             Find a Car
           </Link>
@@ -160,13 +160,13 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by make, model, year, color..."
-                className="w-full px-4 py-3 pr-28 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#EC3827] text-black"
+                className="w-full px-4 py-3 pr-28 border-2 border-gray-300 rounded-lg text-lg focus:outline-none focus:border-[#C74B3F] text-black"
                 autoFocus
               />
               <button
                 type="submit"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white px-6 py-2 rounded-lg font-semibold"
-                style={{ backgroundColor: "#EC3827" }}
+                style={{ backgroundColor: "#C74B3F" }}
               >
                 Search
               </button>
@@ -181,49 +181,49 @@ export default function Header() {
           <div className="px-4 py-4 space-y-3">
             <Link
               href="/"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
               href="/vehicles"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Browse Vehicles
             </Link>
             <Link
               href="/finder"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Car Finder
             </Link>
             <Link
               href="/apply"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Apply Online
             </Link>
             <Link
               href="/about"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               About Us
             </Link>
             <Link
               href="/contact"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Contact Us
             </Link>
             <Link
               href="/export-query"
-              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
               onClick={toggleMenu}
             >
               Export Query

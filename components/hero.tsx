@@ -46,7 +46,7 @@ export default function Hero() {
             <Link href="/contact">
               <button
                 className="inline-flex items-center gap-2 text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all w-fit shadow-lg btn-hover-lift text-lg"
-                style={{ backgroundColor: "#EC3827" }}
+                style={{ backgroundColor: "#C74B3F" }}
               >
                 Talk To Us Today!
                 <ArrowRight size={22} />

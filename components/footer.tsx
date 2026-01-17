@@ -24,7 +24,7 @@ export default function Footer() {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#EC3827] transition-colors"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -33,7 +33,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#EC3827] transition-colors"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
                 aria-label="Twitter"
               >
                 <Twitter size={20} />
@@ -42,7 +42,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#EC3827] transition-colors"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
@@ -51,7 +51,7 @@ export default function Footer() {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#EC3827] transition-colors"
+                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube size={20} />
@@ -61,42 +61,42 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-5" style={{ color: "#EC3827" }}>
+            <h3 className="font-bold text-lg mb-5" style={{ color: "#C74B3F" }}>
               Quick Links
             </h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/vehicles" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/vehicles" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Browse Vehicles
                 </Link>
               </li>
               <li>
-                <Link href="/finder" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/finder" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Car Finder
                 </Link>
               </li>
               <li>
-                <Link href="/apply" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/apply" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Apply Online
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/about" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/contact" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/export-query" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                <Link href="/export-query" className="text-gray-300 hover:text-[#C74B3F] transition-colors text-base">
                   Export Query
                 </Link>
               </li>
@@ -105,19 +105,19 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-5" style={{ color: "#EC3827" }}>
+            <h3 className="font-bold text-lg mb-5" style={{ color: "#C74B3F" }}>
               Contact Info
             </h3>
             <ul className="space-y-3 text-gray-300 text-base">
               <li>
                 <span className="font-semibold text-white block mb-1">Phone:</span>
-                <a href="tel:2142156273" className="hover:text-[#EC3827] transition-colors">
+                <a href="tel:2142156273" className="hover:text-[#C74B3F] transition-colors">
                   (214) 215-6273
                 </a>
               </li>
               <li>
                 <span className="font-semibold text-white block mb-1">Email:</span>
-                <a href="mailto:cjunctionllc@gmail.com" className="hover:text-[#EC3827] transition-colors break-all">
+                <a href="mailto:cjunctionllc@gmail.com" className="hover:text-[#C74B3F] transition-colors break-all">
                   cjunctionllc@gmail.com
                 </a>
               </li>
@@ -130,7 +130,7 @@ export default function Footer() {
 
           {/* Address */}
           <div>
-            <h3 className="font-bold text-lg mb-5" style={{ color: "#EC3827" }}>
+            <h3 className="font-bold text-lg mb-5" style={{ color: "#C74B3F" }}>
               Address
             </h3>
             <p className="text-gray-300 text-base leading-relaxed">
@@ -147,16 +147,16 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-base">&copy; {currentYear} Car Junction LLC. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6 text-base text-gray-400">
-            <Link href="/privacy" className="hover:text-[#EC3827] transition-colors">
+            <Link href="/privacy" className="hover:text-[#C74B3F] transition-colors">
               Privacy
             </Link>
-            <Link href="/terms" className="hover:text-[#EC3827] transition-colors">
+            <Link href="/terms" className="hover:text-[#C74B3F] transition-colors">
               Terms
             </Link>
-            <Link href="/cookies" className="hover:text-[#EC3827] transition-colors">
+            <Link href="/cookies" className="hover:text-[#C74B3F] transition-colors">
               Cookies
             </Link>
-            <Link href="/licensing" className="hover:text-[#EC3827] transition-colors">
+            <Link href="/licensing" className="hover:text-[#C74B3F] transition-colors">
               Licensing
             </Link>
           </div>
