@@ -83,44 +83,6 @@ export default function ExportQueryPage() {
     }
   }
 
-  const handleExport = () => {
-    const csvContent = `Brand,Model,Budget,Miles,Email,Phone,Notes\n${formData.brand},${formData.model},${formData.budget},${formData.miles},${formData.email},${formData.phone},"${formData.notes.replace(/"/g, '""')}"`
-    const blob = new Blob([csvContent], { type: "text/csv" })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = "vehicle-query.csv"
-    a.click()
-    URL.revokeObjectURL(url)
-  }
-
-  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onload = (event) => {
-      const text = event.target?.result as string
-      const lines = text.split("\n")
-      if (lines.length >= 2) {
-        const values = lines[1].split(",")
-        if (values.length >= 6) {
-          setFormData({
-            brand: values[0]?.trim() || "",
-            model: values[1]?.trim() || "",
-            budget: values[2]?.trim() || "",
-            miles: values[3]?.trim() || "",
-            email: values[4]?.trim() || "",
-            phone: values[5]?.trim() || "",
-            notes: values[6]?.replace(/^"|"$/g, "").replace(/""/g, '"') || ""
-          })
-        }
-      }
-    }
-    reader.readAsText(file)
-    e.target.value = ""
-  }
-
   return (
     <main className="min-h-screen bg-gray-50">
       <Header />
@@ -129,20 +91,7 @@ export default function ExportQueryPage() {
       <section className="py-16 px-4 md:px-6">
         <div className="max-w-2xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">Export Query</h1>
-          <p className="text-gray-600 text-center mb-8">Submit your vehicle inquiry or import/export your query data</p>
-
-          <div className="flex gap-3 justify-center mb-8">
-            <button
-              onClick={handleExport}
-              className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
-            >
-              Export to CSV
-            </button>
-            <label className="px-4 py-2 bg-[#C74B3F] text-white rounded-lg hover:bg-[#d63020] transition-colors text-sm font-medium cursor-pointer">
-              Import from CSV
-              <input type="file" accept=".csv" onChange={handleImport} className="hidden" />
-            </label>
-          </div>
+          <p className="text-gray-600 text-center mb-8">Submit your vehicle inquiry and we&apos;ll get back to you</p>
 
           <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-lg p-6 space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -237,18 +186,27 @@ export default function ExportQueryPage() {
               />
             </div>
 
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+            <div className="bg-[#C74B3F]/10 border-2 border-[#C74B3F] p-6 rounded-xl">
+              <label className="block text-lg font-bold text-gray-900 mb-3">
                 Security Check: What is {captcha.num1} + {captcha.num2}? *
               </label>
-              <input
-                type="number"
-                value={captchaAnswer}
-                onChange={(e) => setCaptchaAnswer(e.target.value)}
-                placeholder="Your answer"
-                className="w-32 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-transparent"
-                required
-              />
+              <div className="flex items-center gap-4">
+                <input
+                  type="number"
+                  value={captchaAnswer}
+                  onChange={(e) => setCaptchaAnswer(e.target.value)}
+                  placeholder="Your answer"
+                  className="w-40 px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#C74B3F] focus:border-[#C74B3F] bg-white"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={generateCaptcha}
+                  className="px-5 py-4 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg font-semibold transition-colors"
+                >
+                  Refresh
+                </button>
+              </div>
             </div>
 
             {submitStatus === "success" && (
