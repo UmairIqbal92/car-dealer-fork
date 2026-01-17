@@ -109,6 +109,9 @@ export default function Header() {
           <Link href="/contact" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
             Contact Us
           </Link>
+          <Link href="/export-query" className="text-black hover:text-[#EC3827] transition-colors font-semibold text-base">
+            Export Query
+          </Link>
         </div>
 
         {/* Right Side Actions */}
@@ -217,6 +220,13 @@ export default function Header() {
               onClick={toggleMenu}
             >
               Contact Us
+            </Link>
+            <Link
+              href="/export-query"
+              className="block text-black hover:text-[#EC3827] transition-colors font-semibold py-3 text-lg"
+              onClick={toggleMenu}
+            >
+              Export Query
             </Link>
           </div>
         </div>

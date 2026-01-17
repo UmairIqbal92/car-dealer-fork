@@ -95,6 +95,11 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/export-query" className="text-gray-300 hover:text-[#EC3827] transition-colors text-base">
+                  Export Query
+                </Link>
+              </li>
             </ul>
           </div>
 
