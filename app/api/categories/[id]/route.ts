@@ -4,12 +4,12 @@ import pool from '@/lib/db';
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const { name } = await request.json();
+    const { name, logo } = await request.json();
     const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     const result = await pool.query(
-      'UPDATE categories SET name = $1, slug = $2 WHERE id = $3 RETURNING *',
-      [name, slug, parseInt(id)]
+      'UPDATE categories SET name = $1, slug = $2, logo = $3 WHERE id = $4 RETURNING *',
+      [name, slug, logo || null, parseInt(id)]
     );
     
     return NextResponse.json({ success: true, category: result.rows[0] });

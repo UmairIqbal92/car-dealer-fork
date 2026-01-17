@@ -13,12 +13,12 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { name } = await request.json();
+    const { name, logo } = await request.json();
     const slug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
     
     const result = await pool.query(
-      'INSERT INTO categories (name, slug) VALUES ($1, $2) RETURNING *',
-      [name, slug]
+      'INSERT INTO categories (name, slug, logo) VALUES ($1, $2, $3) RETURNING *',
+      [name, slug, logo || null]
     );
     
     return NextResponse.json({ success: true, category: result.rows[0] });
