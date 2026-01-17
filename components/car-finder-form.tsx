@@ -23,10 +23,6 @@ export default function CarFinderForm() {
     terms: false,
   })
 
-  const makes = ["Toyota", "Honda", "Ford", "BMW", "Mercedes", "Audi", "Chevrolet", "Nissan", "Jeep", "RAM"]
-  const models = ["Camry", "Accord", "F-150", "3 Series", "C-Class", "A4", "Silverado", "Altima", "Wrangler", "1500"]
-  const years = Array.from({ length: 30 }, (_, i) => 2025 - i)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     setFormData((prev) => ({
@@ -137,55 +133,40 @@ export default function CarFinderForm() {
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-semibold text-black mb-1.5">Make *</label>
-                      <select
+                      <input
+                        type="text"
                         name="make"
                         value={formData.make}
                         onChange={handleChange}
                         required
+                        placeholder="e.g. Toyota"
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                      >
-                        <option value="">Select</option>
-                        {makes.map((m) => (
-                          <option key={m} value={m}>
-                            {m}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold text-black mb-1.5">Model *</label>
-                      <select
+                      <input
+                        type="text"
                         name="model"
                         value={formData.model}
                         onChange={handleChange}
                         required
+                        placeholder="e.g. Camry"
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                      >
-                        <option value="">Select</option>
-                        {models.map((m) => (
-                          <option key={m} value={m}>
-                            {m}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold text-black mb-1.5">Year From</label>
-                      <select
+                      <input
+                        type="text"
                         name="yearMin"
                         value={formData.yearMin}
                         onChange={handleChange}
+                        placeholder="e.g. 2020"
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg bg-gray-50 text-black text-sm focus:outline-none focus:ring-2 focus:ring-red-600"
-                      >
-                        <option value="">Any</option>
-                        {years.map((y) => (
-                          <option key={y} value={y}>
-                            {y}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
 
                     <div>
