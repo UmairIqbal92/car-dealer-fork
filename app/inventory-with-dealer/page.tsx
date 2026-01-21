@@ -76,7 +76,7 @@ function InventoryContent() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-3">Dealer Inventory</h1>
           <p className="text-red-100 text-lg max-w-3xl">
-            Explore our exclusive collection of premium used vehicles from Cars & Trucks dealership
+            Explore our exclusive collection of premium used vehicles from Car Junction LLC
           </p>
         </div>
       </section>

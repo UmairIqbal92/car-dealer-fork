@@ -6,11 +6,11 @@ import { MapPin, Phone, Clock } from "lucide-react"
 
 export default function DealerPage() {
   const dealerInfo = {
-    name: "Cars & Trucks Main Dealership",
+    name: "Car Junction LLC",
     address: "2435 Glenda Ln Ste 4, Dallas, TX 75229",
-    phone: "(+62)21-2002-2012",
+    phone: "(214) 215-6273",
     hours: "Mon - Sat: 9:00 AM - 7:00 PM, Sun: Closed",
-    email: "needhelp@company.com",
+    email: "cjunctionllc@gmail.com",
   }
 
   const inventoryItems = [

@@ -28,7 +28,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <p className="text-sm text-gray-500 mb-4">Last Updated: January 14, 2026</p>
               <p className="text-lg">
-                At Cars & Trucks Used Vehicle Shop, we are committed to protecting your privacy and ensuring the
+                At Car Junction LLC, we are committed to protecting your privacy and ensuring the
                 security of your personal information. This Privacy Policy explains how we collect, use, disclose, and
                 safeguard your information when you visit our website or use our services.
               </p>
@@ -137,9 +137,9 @@ export default function PrivacyPolicyPage() {
                 If you have any questions about this Privacy Policy or our data practices, please contact us:
               </p>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="font-semibold text-black">Cars & Trucks Used Vehicle Shop</p>
+                <p className="font-semibold text-black">Car Junction LLC</p>
                 <p>2435 Glenda Ln Ste 4, Dallas, TX 75229</p>
-                <p>Email: needhelp@company.com</p>
+                <p>Email: cjunctionllc@gmail.com</p>
               </div>
             </div>
           </div>

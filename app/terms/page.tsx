@@ -28,7 +28,7 @@ export default function TermsPage() {
             <div>
               <p className="text-sm text-gray-500 mb-4">Last Updated: January 14, 2026</p>
               <p className="text-lg">
-                Welcome to Cars & Trucks Used Vehicle Shop. By accessing or using our website and services, you agree to
+                Welcome to Car Junction LLC. By accessing or using our website and services, you agree to
                 be bound by these Terms of Service. Please read them carefully.
               </p>
             </div>
@@ -95,7 +95,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-black mb-4">6. Intellectual Property</h2>
               <p>
                 All content on this website, including text, graphics, logos, images, and software, is the property of
-                Cars & Trucks Used Vehicle Shop or its content suppliers and is protected by copyright and other
+                Car Junction LLC or its content suppliers and is protected by copyright and other
                 intellectual property laws. You may not reproduce, distribute, or create derivative works without our
                 express written permission.
               </p>
@@ -112,7 +112,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-2xl font-bold text-black mb-4">8. Limitation of Liability</h2>
               <p>
-                To the fullest extent permitted by law, Cars & Trucks Used Vehicle Shop shall not be liable for any
+                To the fullest extent permitted by law, Car Junction LLC shall not be liable for any
                 indirect, incidental, special, consequential, or punitive damages arising out of or related to your use
                 of our website or services.
               </p>
@@ -121,7 +121,7 @@ export default function TermsPage() {
             <div>
               <h2 className="text-2xl font-bold text-black mb-4">9. Indemnification</h2>
               <p>
-                You agree to indemnify and hold harmless Cars & Trucks Used Vehicle Shop and its affiliates from any
+                You agree to indemnify and hold harmless Car Junction LLC and its affiliates from any
                 claims, damages, losses, or expenses (including legal fees) arising from your use of our website or
                 violation of these Terms.
               </p>
@@ -148,9 +148,9 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-black mb-4">12. Contact Information</h2>
               <p className="mb-2">If you have any questions about these Terms of Service, please contact us:</p>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="font-semibold text-black">Cars & Trucks Used Vehicle Shop</p>
+                <p className="font-semibold text-black">Car Junction LLC</p>
                 <p>2435 Glenda Ln Ste 4, Dallas, TX 75229</p>
-                <p>Email: needhelp@company.com</p>
+                <p>Email: cjunctionllc@gmail.com</p>
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function LicensingPage() {
           <div className="space-y-8 text-gray-700 leading-relaxed">
             <div>
               <p className="text-lg">
-                Cars & Trucks Used Vehicle Shop operates as a licensed independent automotive dealer in the State of
+                Car Junction LLC operates as a licensed independent automotive dealer in the State of
                 Texas. We are committed to maintaining the highest standards of professionalism and compliance with all
                 applicable state and federal regulations.
               </p>
@@ -38,7 +38,7 @@ export default function LicensingPage() {
               <div className="bg-gray-50 p-6 rounded-lg space-y-3">
                 <div>
                   <p className="font-semibold text-black">Business Name:</p>
-                  <p>Cars & Trucks Used Vehicle Shop</p>
+                  <p>Car Junction LLC</p>
                 </div>
                 <div>
                   <p className="font-semibold text-black">Business Address:</p>
@@ -154,7 +154,7 @@ export default function LicensingPage() {
               <p>
                 All content, images, logos, and materials on this website are protected by copyright and trademark laws.
                 Unauthorized use, reproduction, or distribution of any content is strictly prohibited without express
-                written permission from Cars & Trucks Used Vehicle Shop.
+                written permission from Car Junction LLC.
               </p>
             </div>
 
@@ -162,9 +162,9 @@ export default function LicensingPage() {
               <h2 className="text-2xl font-bold text-black mb-4">Contact Us</h2>
               <p className="mb-2">For questions about our licensing or regulatory compliance, please contact:</p>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="font-semibold text-black">Cars & Trucks Used Vehicle Shop</p>
+                <p className="font-semibold text-black">Car Junction LLC</p>
                 <p>2435 Glenda Ln Ste 4, Dallas, TX 75229</p>
-                <p>Email: needhelp@company.com</p>
+                <p>Email: cjunctionllc@gmail.com</p>
               </div>
             </div>
           </div>

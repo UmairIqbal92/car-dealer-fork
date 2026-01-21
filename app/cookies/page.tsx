@@ -28,7 +28,7 @@ export default function CookiesPage() {
             <div>
               <p className="text-sm text-gray-500 mb-4">Last Updated: January 14, 2026</p>
               <p className="text-lg">
-                This Cookies Policy explains how Cars & Trucks Used Vehicle Shop uses cookies and similar technologies
+                This Cookies Policy explains how Car Junction LLC uses cookies and similar technologies
                 to recognize you when you visit our website. It explains what these technologies are, why we use them,
                 and your rights to control our use of them.
               </p>
@@ -39,7 +39,7 @@ export default function CookiesPage() {
               <p>
                 Cookies are small data files that are placed on your computer or mobile device when you visit a website.
                 Cookies are widely used by website owners to make their websites work more efficiently and provide
-                reporting information. Cookies set by the website owner (in this case, Cars & Trucks) are called
+                reporting information. Cookies set by the website owner (in this case, Car Junction LLC) are called
                 "first-party cookies." Cookies set by parties other than the website owner are called "third-party
                 cookies."
               </p>
@@ -198,9 +198,9 @@ export default function CookiesPage() {
               <h2 className="text-2xl font-bold text-black mb-4">Contact Us</h2>
               <p className="mb-2">If you have any questions about our use of cookies, please contact us:</p>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <p className="font-semibold text-black">Cars & Trucks Used Vehicle Shop</p>
+                <p className="font-semibold text-black">Car Junction LLC</p>
                 <p>2435 Glenda Ln Ste 4, Dallas, TX 75229</p>
-                <p>Email: needhelp@company.com</p>
+                <p>Email: cjunctionllc@gmail.com</p>
               </div>
             </div>
           </div>
