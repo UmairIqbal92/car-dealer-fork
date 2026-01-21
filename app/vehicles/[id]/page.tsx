@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
-import { ArrowLeft, Phone, Mail, ChevronLeft, ChevronRight, MessageSquare, Car, X } from "lucide-react"
+import { ArrowLeft, Phone, Mail, ChevronLeft, ChevronRight, MessageSquare, Car, X, FileText } from "lucide-react"
+import Link from "next/link"
 
 interface Vehicle {
   id: number
@@ -303,9 +304,17 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                 </div>
 
                 <div className="space-y-3">
+                  <Link
+                    href="/apply"
+                    className="flex items-center justify-center gap-2 w-full bg-[#C74B3F] text-white py-4 rounded-lg font-bold text-lg hover:bg-[#b33f35] transition-colors"
+                  >
+                    <FileText size={20} />
+                    Apply Online
+                  </Link>
+                  
                   <button
                     onClick={() => setShowInquiryModal(true)}
-                    className="flex items-center justify-center gap-2 w-full bg-[#C74B3F] text-white py-4 rounded-lg font-bold text-lg hover:bg-[#b33f35] transition-colors cursor-pointer"
+                    className="flex items-center justify-center gap-2 w-full border-2 border-[#C74B3F] text-[#C74B3F] py-4 rounded-lg font-bold text-lg hover:bg-[#FFF5F4] transition-colors cursor-pointer"
                   >
                     <MessageSquare size={20} />
                     Inquire Now
