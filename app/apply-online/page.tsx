@@ -485,7 +485,7 @@ export default function ApplyOnlinePage() {
                         <option value="">-- Select a vehicle from our inventory --</option>
                         {vehicles.map((vehicle) => (
                           <option key={vehicle.id} value={vehicle.id.toString()}>
-                            {vehicle.year} {vehicle.make} {vehicle.model} - ${vehicle.price?.toLocaleString()}
+                            {vehicle.year} {vehicle.make} {vehicle.model} - ${Math.round(vehicle.price || 0).toLocaleString()}
                           </option>
                         ))}
                       </select>
@@ -507,7 +507,7 @@ export default function ApplyOnlinePage() {
                         </div>
                         <div>
                           <label className="block text-xs text-gray-500 mb-1">Price</label>
-                          <p className="font-semibold text-black">${selectedVehicle.price?.toLocaleString()}</p>
+                          <p className="font-semibold text-black">${Math.round(selectedVehicle.price || 0).toLocaleString()}</p>
                         </div>
                         <div>
                           <label className="block text-xs text-gray-500 mb-1">Stock #</label>
@@ -682,7 +682,7 @@ export default function ApplyOnlinePage() {
                       </div>
                       <div>
                         <span className="text-gray-500">Price:</span>
-                        <p className="font-semibold text-black">${selectedVehicle.price?.toLocaleString()}</p>
+                        <p className="font-semibold text-black">${Math.round(selectedVehicle.price || 0).toLocaleString()}</p>
                       </div>
                       <div>
                         <span className="text-gray-500">Stock #:</span>

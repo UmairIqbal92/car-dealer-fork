@@ -245,7 +245,7 @@ export default function VehicleDetailPage({ params }: { params: Promise<{ id: st
                 <h1 className="text-2xl sm:text-3xl font-bold text-black mb-2">
                   {vehicle.year} {vehicle.make} {vehicle.model}
                 </h1>
-                <p className="text-4xl sm:text-5xl font-bold text-[#C74B3F] mb-6">${vehicle.price?.toLocaleString()}</p>
+                <p className="text-4xl sm:text-5xl font-bold text-[#C74B3F] mb-6">${Math.round(vehicle.price || 0).toLocaleString()}</p>
 
                 <div className="space-y-3 mb-6 pb-6 border-b border-gray-200">
                   <div className="flex justify-between">

@@ -567,7 +567,7 @@ export default function ApplyOnlinePage() {
                     <option value="">-- Select a vehicle from our inventory --</option>
                     {vehicles.map((vehicle) => (
                       <option key={vehicle.id} value={vehicle.id.toString()}>
-                        {vehicle.year} {vehicle.make} {vehicle.model} - ${vehicle.price?.toLocaleString()}
+                        {vehicle.year} {vehicle.make} {vehicle.model} - ${Math.round(vehicle.price || 0).toLocaleString()}
                       </option>
                     ))}
                   </select>

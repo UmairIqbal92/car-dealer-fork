@@ -406,7 +406,7 @@ export default function VehiclesPage() {
 
                         <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                           <span className="text-2xl md:text-3xl font-bold text-[#C74B3F]">
-                            ${vehicle.price?.toLocaleString() || 0}
+                            ${Math.round(vehicle.price || 0).toLocaleString()}
                           </span>
                           <Link
                             href={`/vehicles/${vehicle.id}`}
