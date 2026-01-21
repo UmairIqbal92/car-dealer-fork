@@ -7,9 +7,15 @@ interface ImageUploaderProps {
   value?: string
   onChange: (url: string) => void
   label?: string
+  folder?: string
 }
 
-export default function ImageUploader({ value, onChange, label = "Upload Image" }: ImageUploaderProps) {
+export default function ImageUploader({ 
+  value, 
+  onChange, 
+  label = "Upload Image",
+  folder = "categories"
+}: ImageUploaderProps) {
   const [isUploading, setIsUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -32,33 +38,22 @@ export default function ImageUploader({ value, onChange, label = "Upload Image" 
     setError(null)
 
     try {
-      const response = await fetch("/api/uploads/request-url", {
+      const formData = new FormData()
+      formData.append("file", file)
+      formData.append("folder", folder)
+
+      const response = await fetch("/api/upload", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: file.name,
-          size: file.size,
-          contentType: file.type,
-        }),
+        body: formData,
       })
 
       if (!response.ok) {
-        throw new Error("Failed to get upload URL")
+        const data = await response.json()
+        throw new Error(data.error || "Failed to upload file")
       }
 
-      const { uploadURL, objectPath } = await response.json()
-
-      const uploadResponse = await fetch(uploadURL, {
-        method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type },
-      })
-
-      if (!uploadResponse.ok) {
-        throw new Error("Failed to upload file")
-      }
-
-      onChange(objectPath)
+      const { url } = await response.json()
+      onChange(url)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed")
     } finally {
@@ -74,6 +69,9 @@ export default function ImageUploader({ value, onChange, label = "Upload Image" 
   }
 
   const getImageUrl = (path: string) => {
+    if (path.startsWith("/uploads/")) {
+      return path
+    }
     if (path.startsWith("/objects/")) {
       return `/api${path}`
     }

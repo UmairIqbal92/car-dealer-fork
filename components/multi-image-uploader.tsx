@@ -1,20 +1,22 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { Upload, X, Loader2, Plus } from "lucide-react"
+import { X, Loader2, Plus } from "lucide-react"
 
 interface MultiImageUploaderProps {
   value: string[]
   onChange: (urls: string[]) => void
   maxImages?: number
   label?: string
+  folder?: string
 }
 
 export default function MultiImageUploader({ 
   value = [], 
   onChange, 
   maxImages = 10,
-  label = "Upload Images" 
+  label = "Upload Images",
+  folder = "vehicles"
 }: MultiImageUploaderProps) {
   const [isUploading, setIsUploading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -47,44 +49,33 @@ export default function MultiImageUploader({
     setIsUploading(true)
     setError(null)
 
-    const uploadedPaths: string[] = []
+    const uploadedUrls: string[] = []
 
     for (const file of filesToUpload) {
       try {
-        const response = await fetch("/api/uploads/request-url", {
+        const formData = new FormData()
+        formData.append("file", file)
+        formData.append("folder", folder)
+
+        const response = await fetch("/api/upload", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: file.name,
-            size: file.size,
-            contentType: file.type,
-          }),
+          body: formData,
         })
 
         if (!response.ok) {
-          throw new Error("Failed to get upload URL")
+          const data = await response.json()
+          throw new Error(data.error || "Failed to upload file")
         }
 
-        const { uploadURL, objectPath } = await response.json()
-
-        const uploadResponse = await fetch(uploadURL, {
-          method: "PUT",
-          body: file,
-          headers: { "Content-Type": file.type },
-        })
-
-        if (!uploadResponse.ok) {
-          throw new Error("Failed to upload file")
-        }
-
-        uploadedPaths.push(objectPath)
+        const { url } = await response.json()
+        uploadedUrls.push(url)
       } catch (err) {
         setError(err instanceof Error ? err.message : "Upload failed")
       }
     }
 
-    if (uploadedPaths.length > 0) {
-      onChange([...value, ...uploadedPaths])
+    if (uploadedUrls.length > 0) {
+      onChange([...value, ...uploadedUrls])
     }
 
     setIsUploading(false)
@@ -99,6 +90,9 @@ export default function MultiImageUploader({
   }
 
   const getImageUrl = (path: string) => {
+    if (path.startsWith("/uploads/")) {
+      return path
+    }
     if (path.startsWith("/objects/")) {
       return `/api${path}`
     }
