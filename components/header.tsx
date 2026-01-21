@@ -79,9 +79,6 @@ export default function Header() {
           <Link href="/vehicles" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Browse Vehicles
           </Link>
-          <Link href="/finder" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
-            Car Finder
-          </Link>
           <Link href="/apply" className="text-black hover:text-[#C74B3F] transition-colors font-semibold text-base">
             Apply Online
           </Link>
@@ -174,13 +171,6 @@ export default function Header() {
               onClick={toggleMenu}
             >
               Browse Vehicles
-            </Link>
-            <Link
-              href="/finder"
-              className="block text-black hover:text-[#C74B3F] transition-colors font-semibold py-3 text-lg"
-              onClick={toggleMenu}
-            >
-              Car Finder
             </Link>
             <Link
               href="/apply"
