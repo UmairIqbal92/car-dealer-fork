@@ -15,6 +15,7 @@ interface Vehicle {
   model: string
   price: number
   stock_number: string
+  color: string
 }
 
 export default function ApplyOnlinePage() {
@@ -89,6 +90,7 @@ export default function ApplyOnlinePage() {
           make: vehicle.make || "",
           model: vehicle.model || "",
           vehiclePrice: vehicle.price?.toString() || "",
+          exteriorColor: vehicle.color || "",
         }))
       }
     } else {
@@ -100,6 +102,7 @@ export default function ApplyOnlinePage() {
         make: "",
         model: "",
         vehiclePrice: "",
+        exteriorColor: "",
       }))
     }
   }
@@ -624,8 +627,8 @@ export default function ApplyOnlinePage() {
                     name="exteriorColor"
                     placeholder="Exterior Color"
                     value={buyerFormData.exteriorColor}
-                    onChange={handleBuyerChange}
-                    className="md:col-span-2 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    readOnly
+                    className="md:col-span-2 px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                 </div>
                 <label className="flex items-center gap-3 mt-6 text-black font-semibold">
