@@ -12,6 +12,13 @@ interface Brand {
   vehicle_count: number
 }
 
+const getImageUrl = (path: string | null) => {
+  if (!path) return null
+  if (path.startsWith("/uploads/")) return path
+  if (path.startsWith("/objects/")) return `/api${path}`
+  return path
+}
+
 export default function BrowseByBrands() {
   const [brands, setBrands] = useState<Brand[]>([])
   const [loading, setLoading] = useState(true)
@@ -91,7 +98,7 @@ export default function BrowseByBrands() {
                 <div className="relative z-10 mb-4 w-full h-28 flex items-center justify-center">
                   {brand.logo ? (
                     <img
-                      src={brand.logo}
+                      src={getImageUrl(brand.logo) || ""}
                       alt={`${brand.name} logo`}
                       className="max-w-[120px] max-h-[100px] w-auto h-auto object-contain filter drop-shadow-sm group-hover:drop-shadow-lg transition-all"
                     />
