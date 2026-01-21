@@ -42,8 +42,8 @@ export function LocalBusinessSchema() {
       "geoRadius": "50 miles"
     },
     "sameAs": [
-      "https://facebook.com/carjunctionllc",
-      "https://instagram.com/carjunctionllc"
+      "https://www.facebook.com/people/Car-Junction-USA/61584677702455/",
+      "https://www.instagram.com/carjunctionllc"
     ]
   }
 

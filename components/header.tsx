@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Menu, X, Search, Facebook, Twitter, Instagram, Youtube, Phone, MapPin } from "lucide-react"
+import { Menu, X, Search, Facebook, Instagram, Phone, MapPin } from "lucide-react"
 import Link from "next/link"
 
 export default function Header() {
@@ -30,7 +30,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex gap-4">
             <a
-              href="https://facebook.com"
+              href="https://www.facebook.com/people/Car-Junction-USA/61584677702455/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-gray-100 transition-colors"
@@ -39,25 +39,7 @@ export default function Header() {
               <Facebook size={18} />
             </a>
             <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-100 transition-colors"
-              aria-label="Twitter"
-            >
-              <Twitter size={18} />
-            </a>
-            <a
-              href="https://youtube.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-100 transition-colors"
-              aria-label="YouTube"
-            >
-              <Youtube size={18} />
-            </a>
-            <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/carjunctionllc"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white hover:text-gray-100 transition-colors"

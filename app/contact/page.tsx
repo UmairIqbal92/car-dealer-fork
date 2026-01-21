@@ -4,7 +4,7 @@ import type React from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react"
 import { useState, useEffect } from "react"
 
 export default function ContactPage() {
@@ -159,7 +159,7 @@ export default function ContactPage() {
                 <h3 className="font-bold text-black text-lg mb-6">Follow Us</h3>
                 <div className="flex gap-4">
                   <a
-                    href="https://facebook.com"
+                    href="https://www.facebook.com/people/Car-Junction-USA/61584677702455/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
@@ -169,7 +169,7 @@ export default function ContactPage() {
                     <Facebook size={22} />
                   </a>
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/carjunctionllc"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
@@ -177,16 +177,6 @@ export default function ContactPage() {
                     aria-label="Instagram"
                   >
                     <Instagram size={22} />
-                  </a>
-                  <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-white hover:opacity-90 transition-all"
-                    style={{ backgroundColor: "#C74B3F" }}
-                    aria-label="YouTube"
-                  >
-                    <Youtube size={22} />
                   </a>
                 </div>
               </div>

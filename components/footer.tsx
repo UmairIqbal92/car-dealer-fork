@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react"
+import { Facebook, Instagram } from "lucide-react"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -21,7 +21,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/people/Car-Junction-USA/61584677702455/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
@@ -30,31 +30,13 @@ export default function Footer() {
                 <Facebook size={20} />
               </a>
               <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
-              <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/carjunctionllc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram size={20} />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-11 h-11 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#C74B3F] transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube size={20} />
               </a>
             </div>
           </div>
