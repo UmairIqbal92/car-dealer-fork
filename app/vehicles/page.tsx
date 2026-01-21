@@ -54,13 +54,30 @@ export default function VehiclesPage() {
     transmission: searchParams.get("transmission") || "",
   })
   const observerTarget = useRef<HTMLDivElement>(null)
+  const [availableMakes, setAvailableMakes] = useState<string[]>([])
+  const [availableModels, setAvailableModels] = useState<string[]>([])
+  const [availableBodyTypes, setAvailableBodyTypes] = useState<string[]>([])
 
-  const makes = ["Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "BMW", "Mercedes-Benz", "Audi", "Jeep", "RAM", "GMC", "Hyundai", "Kia"]
-  const models = ["Camry", "Accord", "F-150", "Silverado", "Altima", "3 Series", "C-Class", "A4", "Wrangler", "1500", "Tacoma", "CR-V", "Civic"]
   const years = Array.from({ length: 76 }, (_, i) => new Date().getFullYear() - i + 1)
-  const bodyTypes = ["Sedan", "SUV", "Truck", "Coupe", "Hatchback", "Van", "Convertible"]
   const fuelTypes = ["Gasoline", "Diesel", "Hybrid", "Electric"]
   const transmissions = ["Automatic", "Manual"]
+
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const res = await fetch("/api/vehicle-options")
+        const data = await res.json()
+        if (data.success) {
+          setAvailableMakes(data.makes || [])
+          setAvailableModels(data.models || [])
+          setAvailableBodyTypes(data.bodyTypes || [])
+        }
+      } catch (err) {
+        console.error("Error fetching vehicle options:", err)
+      }
+    }
+    fetchOptions()
+  }, [])
 
   const buildParams = useCallback((pageNum: number) => {
     const params = new URLSearchParams()
@@ -180,7 +197,7 @@ export default function VehiclesPage() {
                   <div>
                     <label className="block text-sm font-semibold text-black mb-1.5">Make</label>
                     <AdvancedSelect
-                      options={makes}
+                      options={availableMakes}
                       value={filters.make}
                       onChange={(val) => handleFilterChange("make", val)}
                       placeholder="Select Make"
@@ -192,7 +209,7 @@ export default function VehiclesPage() {
                   <div>
                     <label className="block text-sm font-semibold text-black mb-1.5">Model</label>
                     <AdvancedSelect
-                      options={models}
+                      options={availableModels}
                       value={filters.model}
                       onChange={(val) => handleFilterChange("model", val)}
                       placeholder="Select Model"
@@ -250,7 +267,7 @@ export default function VehiclesPage() {
                   <div>
                     <label className="block text-sm font-semibold text-black mb-1.5">Body Type</label>
                     <AdvancedSelect
-                      options={bodyTypes}
+                      options={availableBodyTypes}
                       value={filters.bodyType}
                       onChange={(val) => handleFilterChange("bodyType", val)}
                       placeholder="Select Body Type"
