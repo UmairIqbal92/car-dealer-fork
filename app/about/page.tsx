@@ -132,7 +132,7 @@ export default function AboutPage() {
               Dallas, Texas 75229
             </p>
             <p className="text-gray-700 text-lg mb-8">
-              <span className="font-semibold">Business Hours:</span> Monday - Saturday, 9:00 AM - 6:00 PM
+              <span className="font-semibold">Business Hours:</span> Monday - Saturday, 9:00 AM - 7:00 PM | Sunday: Closed
             </p>
             <Link href="/contact">
               <button

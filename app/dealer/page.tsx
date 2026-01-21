@@ -9,7 +9,7 @@ export default function DealerPage() {
     name: "Cars & Trucks Main Dealership",
     address: "2435 Glenda Ln Ste 4, Dallas, TX 75229",
     phone: "(+62)21-2002-2012",
-    hours: "Mon - Sat: 09:00am - 06:00pm",
+    hours: "Mon - Sat: 9:00 AM - 7:00 PM, Sun: Closed",
     email: "needhelp@company.com",
   }
 

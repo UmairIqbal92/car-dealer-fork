@@ -123,7 +123,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="font-semibold text-white block mb-1">Hours:</span>
-                <span>9:00 AM - 6:00 PM</span>
+                <span>Monday - Saturday<br />9:00 AM - 7:00 PM<br />Sunday: Closed</span>
               </li>
             </ul>
           </div>
