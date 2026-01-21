@@ -153,6 +153,7 @@ export async function sendApplicationEmail(data: {
   buyerData: any;
   coBuyerData?: any;
   vehicleInfo?: string;
+  tradeIn?: string | null;
 }) {
   try {
     const { client, fromEmail } = await getResendClient();
@@ -168,7 +169,8 @@ export async function sendApplicationEmail(data: {
         <p><strong>Email:</strong> ${data.buyerData.email}</p>
         <p><strong>Phone:</strong> ${data.buyerData.cellPhone}</p>
         <p><strong>Address:</strong> ${data.buyerData.streetAddress}, ${data.buyerData.city}, ${data.buyerData.state} ${data.buyerData.zipCode}</p>
-        ${data.vehicleInfo ? `<h3>Interested Vehicle:</h3><p>${data.vehicleInfo}</p>` : ''}
+        ${data.vehicleInfo ? `<h3>Vehicle of Interest:</h3><p>${data.vehicleInfo}</p>` : ''}
+        ${data.tradeIn ? `<h3>Trade-In Vehicle:</h3><p style="white-space: pre-wrap;">${data.tradeIn}</p>` : ''}
         ${data.coBuyerData ? `
           <h3>Co-Buyer Information:</h3>
           <p><strong>Name:</strong> ${data.coBuyerData.firstName} ${data.coBuyerData.lastName}</p>

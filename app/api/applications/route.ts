@@ -21,25 +21,25 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json();
     
+    const vehicleId = data.vehicleOfInterest?.id || null;
+    
     const result = await pool.query(
       `INSERT INTO applications (buyer_data, co_buyer_data, vehicle_id)
        VALUES ($1, $2, $3)
        RETURNING *`,
-      [JSON.stringify(data.buyerData), data.coBuyerData ? JSON.stringify(data.coBuyerData) : null, data.vehicleId || null]
+      [JSON.stringify(data.buyerData), data.coBuyerData ? JSON.stringify(data.coBuyerData) : null, vehicleId]
     );
     
     let vehicleInfo = '';
-    if (data.vehicleId) {
-      const vehicleResult = await pool.query('SELECT name, year FROM vehicles WHERE id = $1', [data.vehicleId]);
-      if (vehicleResult.rows.length > 0) {
-        vehicleInfo = `${vehicleResult.rows[0].year} ${vehicleResult.rows[0].name}`;
-      }
+    if (data.vehicleOfInterest) {
+      vehicleInfo = `${data.vehicleOfInterest.year} ${data.vehicleOfInterest.make} ${data.vehicleOfInterest.model} - $${data.vehicleOfInterest.price?.toLocaleString()} (Stock: ${data.vehicleOfInterest.stockNumber})`;
     }
     
     await sendApplicationEmail({
       buyerData: data.buyerData,
       coBuyerData: data.coBuyerData,
-      vehicleInfo
+      vehicleInfo,
+      tradeIn: data.tradeIn
     });
     
     return NextResponse.json({ success: true, application: result.rows[0] });

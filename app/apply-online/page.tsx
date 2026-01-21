@@ -5,19 +5,55 @@ import { useState, useEffect } from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
-import { FileText, CheckCircle } from "lucide-react"
+import { FileText, CheckCircle, Plus, Minus } from "lucide-react"
+
+interface Vehicle {
+  id: number
+  name: string
+  year: number
+  make: string
+  model: string
+  price: number
+  stock_number: string
+}
 
 export default function ApplyOnlinePage() {
   const [step, setStep] = useState(1)
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [hasCoBuyer, setHasCoBuyer] = useState(false)
+  const [hasTradeIn, setHasTradeIn] = useState(false)
+  const [tradeInDescription, setTradeInDescription] = useState("")
+  const [vehicles, setVehicles] = useState<Vehicle[]>([])
+  const [selectedVehicleId, setSelectedVehicleId] = useState("")
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null)
   const [captchaAnswer, setCaptchaAnswer] = useState("")
   const [captcha, setCaptcha] = useState({ num1: 0, num2: 0, answer: 0 })
 
   useEffect(() => {
     generateCaptcha()
+    fetchVehicles()
   }, [])
+
+  const fetchVehicles = async () => {
+    try {
+      const res = await fetch("/api/vehicles?limit=100")
+      const data = await res.json()
+      setVehicles(data.vehicles || [])
+    } catch (err) {
+      console.error("Error fetching vehicles:", err)
+    }
+  }
+
+  const handleVehicleSelect = (vehicleId: string) => {
+    setSelectedVehicleId(vehicleId)
+    if (vehicleId) {
+      const vehicle = vehicles.find(v => v.id.toString() === vehicleId)
+      setSelectedVehicle(vehicle || null)
+    } else {
+      setSelectedVehicle(null)
+    }
+  }
 
   const generateCaptcha = () => {
     const num1 = Math.floor(Math.random() * 8) + 2
@@ -104,6 +140,15 @@ export default function ApplyOnlinePage() {
         body: JSON.stringify({
           buyerData,
           coBuyerData: hasCoBuyer ? coBuyerData : null,
+          vehicleOfInterest: selectedVehicle ? {
+            id: selectedVehicle.id,
+            year: selectedVehicle.year,
+            make: selectedVehicle.make,
+            model: selectedVehicle.model,
+            price: selectedVehicle.price,
+            stockNumber: selectedVehicle.stock_number || `#${selectedVehicle.id}`
+          } : null,
+          tradeIn: hasTradeIn ? tradeInDescription : null,
         })
       })
 
@@ -428,6 +473,78 @@ export default function ApplyOnlinePage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6 mb-6">
+                  <h3 className="text-lg font-bold text-black mb-4">Vehicle of Interest</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-black mb-2">Select Vehicle</label>
+                      <select
+                        value={selectedVehicleId}
+                        onChange={(e) => handleVehicleSelect(e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F] bg-white"
+                      >
+                        <option value="">-- Select a vehicle from our inventory --</option>
+                        {vehicles.map((vehicle) => (
+                          <option key={vehicle.id} value={vehicle.id.toString()}>
+                            {vehicle.year} {vehicle.make} {vehicle.model} - ${vehicle.price?.toLocaleString()}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    
+                    {selectedVehicle && (
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 p-4 rounded-lg">
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Year</label>
+                          <p className="font-semibold text-black">{selectedVehicle.year}</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Make</label>
+                          <p className="font-semibold text-black">{selectedVehicle.make}</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Model</label>
+                          <p className="font-semibold text-black">{selectedVehicle.model}</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Price</label>
+                          <p className="font-semibold text-black">${selectedVehicle.price?.toLocaleString()}</p>
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Stock #</label>
+                          <p className="font-semibold text-black">{selectedVehicle.stock_number || `#${selectedVehicle.id}`}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-200 pt-6 mb-6">
+                  <button
+                    type="button"
+                    onClick={() => setHasTradeIn(!hasTradeIn)}
+                    className="flex items-center gap-2 text-[#C74B3F] font-semibold hover:opacity-80 transition-colors"
+                  >
+                    {hasTradeIn ? <Minus size={20} /> : <Plus size={20} />}
+                    {hasTradeIn ? "Remove Trade-In" : "Add Trade-In Vehicle"}
+                  </button>
+                  
+                  {hasTradeIn && (
+                    <div className="mt-4">
+                      <label className="block text-sm font-semibold text-black mb-2">
+                        Trade-In Vehicle Details
+                      </label>
+                      <textarea
+                        value={tradeInDescription}
+                        onChange={(e) => setTradeInDescription(e.target.value)}
+                        placeholder="Please provide as much information as possible about your trade-in vehicle (Year, Make, Model, Mileage, Condition, Any issues or damage, etc.)"
+                        rows={5}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C74B3F] bg-gray-50 text-black placeholder-gray-500"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t border-gray-200 pt-6 mb-6">
                   <div className="flex items-center gap-3 mb-4">
                     <input
                       type="checkbox"
@@ -554,6 +671,33 @@ export default function ApplyOnlinePage() {
                     </div>
                   </div>
                 </div>
+
+                {selectedVehicle && (
+                  <div className="bg-gray-50 p-6 rounded-xl mb-6">
+                    <h3 className="text-lg font-bold text-black mb-4">Vehicle of Interest</h3>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-gray-500">Vehicle:</span>
+                        <p className="font-semibold text-black">{selectedVehicle.year} {selectedVehicle.make} {selectedVehicle.model}</p>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Price:</span>
+                        <p className="font-semibold text-black">${selectedVehicle.price?.toLocaleString()}</p>
+                      </div>
+                      <div>
+                        <span className="text-gray-500">Stock #:</span>
+                        <p className="font-semibold text-black">{selectedVehicle.stock_number || `#${selectedVehicle.id}`}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {hasTradeIn && tradeInDescription && (
+                  <div className="bg-gray-50 p-6 rounded-xl mb-6">
+                    <h3 className="text-lg font-bold text-black mb-4">Trade-In Vehicle</h3>
+                    <p className="text-sm text-black whitespace-pre-wrap">{tradeInDescription}</p>
+                  </div>
+                )}
 
                 {hasCoBuyer && (
                   <div className="bg-gray-50 p-6 rounded-xl mb-6">
