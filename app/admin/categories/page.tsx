@@ -112,6 +112,11 @@ export default function AdminCategoriesPage() {
       return
     }
     
+    if (file.size > 10 * 1024 * 1024) {
+      alert("File size must be less than 10MB")
+      return
+    }
+    
     if (isEdit) {
       setEditUploading(true)
     } else {
@@ -119,32 +124,26 @@ export default function AdminCategoriesPage() {
     }
     
     try {
-      const response = await fetch("/api/uploads/request-url", {
+      const formData = new FormData()
+      formData.append("file", file)
+      formData.append("folder", "categories")
+      
+      const response = await fetch("/api/upload", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: file.name,
-          size: file.size,
-          contentType: file.type,
-        }),
+        body: formData,
       })
       
-      if (!response.ok) throw new Error("Failed to get upload URL")
+      if (!response.ok) {
+        const data = await response.json()
+        throw new Error(data.error || "Upload failed")
+      }
       
-      const { uploadURL, objectPath } = await response.json()
-      
-      const uploadResponse = await fetch(uploadURL, {
-        method: "PUT",
-        body: file,
-        headers: { "Content-Type": file.type },
-      })
-      
-      if (!uploadResponse.ok) throw new Error("Upload failed")
+      const { url } = await response.json()
       
       if (isEdit) {
-        setEditingLogo(objectPath)
+        setEditingLogo(url)
       } else {
-        setNewLogo(objectPath)
+        setNewLogo(url)
       }
     } catch (err) {
       alert("Failed to upload image")
@@ -158,9 +157,8 @@ export default function AdminCategoriesPage() {
   }
 
   const getImageUrl = (path: string) => {
-    if (path.startsWith("/objects/")) {
-      return `/api${path}`
-    }
+    if (path.startsWith("/uploads/")) return path
+    if (path.startsWith("/objects/")) return `/api${path}`
     return path
   }
 
