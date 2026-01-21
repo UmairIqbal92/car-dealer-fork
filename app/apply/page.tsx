@@ -5,10 +5,22 @@ import type React from "react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+
+interface Vehicle {
+  id: number
+  name: string
+  year: number
+  make: string
+  model: string
+  price: number
+  stock_number: string
+}
 
 export default function ApplyOnlinePage() {
   const [activeTab, setActiveTab] = useState<"buyer" | "cobuy">("buyer")
+  const [vehicles, setVehicles] = useState<Vehicle[]>([])
+  const [selectedVehicleId, setSelectedVehicleId] = useState("")
   const [buyerFormData, setBuyerFormData] = useState({
     firstName: "",
     lastName: "",
@@ -35,7 +47,7 @@ export default function ApplyOnlinePage() {
     monthlyGrossIncome: "",
     yearsAtJob: "",
     monthsAtJob: "",
-    vehicleKeyword: "",
+    selectedVehicleId: "",
     stockNumber: "",
     year: "",
     make: "",
@@ -43,12 +55,54 @@ export default function ApplyOnlinePage() {
     vehiclePrice: "",
     downPayment: "",
     exteriorColor: "",
-    interiorColor: "",
+    tradeInDescription: "",
     acceptTerms: false,
     addPreviousAddress: false,
     addPreviousEmployment: false,
     addTradeIn: false,
   })
+
+  useEffect(() => {
+    fetchVehicles()
+  }, [])
+
+  const fetchVehicles = async () => {
+    try {
+      const res = await fetch("/api/vehicles?limit=100")
+      const data = await res.json()
+      setVehicles(data.vehicles || [])
+    } catch (err) {
+      console.error("Error fetching vehicles:", err)
+    }
+  }
+
+  const handleVehicleSelect = (vehicleId: string) => {
+    setSelectedVehicleId(vehicleId)
+    if (vehicleId) {
+      const vehicle = vehicles.find(v => v.id.toString() === vehicleId)
+      if (vehicle) {
+        setBuyerFormData(prev => ({
+          ...prev,
+          selectedVehicleId: vehicleId,
+          stockNumber: vehicle.stock_number || `#${vehicle.id}`,
+          year: vehicle.year?.toString() || "",
+          make: vehicle.make || "",
+          model: vehicle.model || "",
+          vehiclePrice: vehicle.price?.toString() || "",
+        }))
+      }
+    } else {
+      setBuyerFormData(prev => ({
+        ...prev,
+        selectedVehicleId: "",
+        stockNumber: "",
+        year: "",
+        make: "",
+        model: "",
+        vehiclePrice: "",
+      }))
+    }
+  }
 
   const [coBuyerFormData, setCoBuyerFormData] = useState({
     hasCoBuyer: false,
@@ -505,53 +559,57 @@ export default function ApplyOnlinePage() {
               <div>
                 <h3 className="text-2xl font-bold text-black mb-6">Interested Vehicle</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <input
-                    type="text"
-                    name="vehicleKeyword"
-                    placeholder="Vehicle Keyword (search box)"
-                    value={buyerFormData.vehicleKeyword}
-                    onChange={handleBuyerChange}
-                    className="md:col-span-2 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
-                  />
+                  <select
+                    value={selectedVehicleId}
+                    onChange={(e) => handleVehicleSelect(e.target.value)}
+                    className="md:col-span-2 px-4 py-3 border border-gray-300 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-red-600"
+                  >
+                    <option value="">-- Select a vehicle from our inventory --</option>
+                    {vehicles.map((vehicle) => (
+                      <option key={vehicle.id} value={vehicle.id.toString()}>
+                        {vehicle.year} {vehicle.make} {vehicle.model} - ${vehicle.price?.toLocaleString()}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="text"
                     name="stockNumber"
                     placeholder="Stock Number"
                     value={buyerFormData.stockNumber}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    readOnly
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                   <input
-                    type="number"
+                    type="text"
                     name="year"
                     placeholder="Year"
                     value={buyerFormData.year}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    readOnly
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                   <input
                     type="text"
                     name="make"
                     placeholder="Make"
                     value={buyerFormData.make}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    readOnly
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                   <input
                     type="text"
                     name="model"
                     placeholder="Model"
                     value={buyerFormData.model}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    readOnly
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                   <input
-                    type="number"
+                    type="text"
                     name="vehiclePrice"
                     placeholder="Vehicle Price"
-                    value={buyerFormData.vehiclePrice}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    value={buyerFormData.vehiclePrice ? `$${Number(buyerFormData.vehiclePrice).toLocaleString()}` : ""}
+                    readOnly
+                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-100 text-black placeholder-gray-500 cursor-not-allowed"
                   />
                   <input
                     type="number"
@@ -567,15 +625,7 @@ export default function ApplyOnlinePage() {
                     placeholder="Exterior Color"
                     value={buyerFormData.exteriorColor}
                     onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
-                  />
-                  <input
-                    type="text"
-                    name="interiorColor"
-                    placeholder="Interior Color"
-                    value={buyerFormData.interiorColor}
-                    onChange={handleBuyerChange}
-                    className="px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    className="md:col-span-2 px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
                   />
                 </div>
                 <label className="flex items-center gap-3 mt-6 text-black font-semibold">
@@ -588,6 +638,21 @@ export default function ApplyOnlinePage() {
                   />
                   Add Trade-in?
                 </label>
+                {buyerFormData.addTradeIn && (
+                  <div className="mt-4">
+                    <label className="block text-sm font-semibold text-black mb-2">
+                      Trade-In Vehicle Details
+                    </label>
+                    <textarea
+                      name="tradeInDescription"
+                      value={buyerFormData.tradeInDescription}
+                      onChange={handleBuyerChange}
+                      placeholder="Please provide as much information as possible about your trade-in vehicle (Year, Make, Model, Mileage, Condition, Any known issues, etc.)"
+                      rows={5}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Terms */}
