@@ -6,7 +6,6 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
 import Captcha from "@/components/captcha"
-import AdvancedSelect from "@/components/advanced-select"
 import { Search } from "lucide-react"
 
 export default function CarFinderPage() {
@@ -27,28 +26,12 @@ export default function CarFinderPage() {
     terms: false,
   })
 
-  const makes = ["Ford", "Chevrolet", "Toyota", "Honda", "Nissan", "RAM", "GMC", "Jeep", "BMW", "Mercedes-Benz"]
-  const models = ["F-150", "Silverado", "Camry", "Accord", "Altima", "Tacoma", "CR-V", "Civic", "3 Series", "C-Class"]
-  const years = Array.from({ length: 36 }, (_, i) => 2025 - i)
-  const priceRanges = [
-    "$0 - $10,000",
-    "$10,000 - $20,000",
-    "$20,000 - $30,000",
-    "$30,000 - $40,000",
-    "$40,000 - $50,000",
-    "$50,000+",
-  ]
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     }))
-  }
-
-  const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -170,51 +153,51 @@ export default function CarFinderPage() {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-semibold text-black mb-2">Make *</label>
-                        <AdvancedSelect
-                          options={makes}
-                          value={formData.make}
-                          onChange={(val) => handleSelectChange("make", val)}
-                          placeholder="Select Make"
+                        <input
+                          type="text"
                           name="make"
-                          required={true}
-                          searchable={true}
+                          value={formData.make}
+                          onChange={handleChange}
+                          placeholder="e.g., Toyota, Ford, Honda..."
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-black mb-2">Model *</label>
-                        <AdvancedSelect
-                          options={models}
-                          value={formData.model}
-                          onChange={(val) => handleSelectChange("model", val)}
-                          placeholder="Select Model"
+                        <input
+                          type="text"
                           name="model"
-                          required={true}
-                          searchable={true}
+                          value={formData.model}
+                          onChange={handleChange}
+                          placeholder="e.g., Camry, F-150, Accord..."
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-black mb-2">Year *</label>
-                        <AdvancedSelect
-                          options={years}
-                          value={formData.year}
-                          onChange={(val) => handleSelectChange("year", val)}
-                          placeholder="Select Year"
+                        <input
+                          type="text"
                           name="year"
-                          required={true}
-                          searchable={true}
+                          value={formData.year}
+                          onChange={handleChange}
+                          placeholder="e.g., 2020, 2018-2022..."
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-semibold text-black mb-2">Max Mileage *</label>
                         <input
-                          type="number"
+                          type="text"
                           name="maxMileage"
                           value={formData.maxMileage}
                           onChange={handleChange}
-                          placeholder="e.g., 50000"
+                          placeholder="e.g., 50000, Under 100k..."
                           required
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
@@ -222,14 +205,14 @@ export default function CarFinderPage() {
 
                       <div>
                         <label className="block text-sm font-semibold text-black mb-2">Price Range *</label>
-                        <AdvancedSelect
-                          options={priceRanges}
-                          value={formData.priceRange}
-                          onChange={(val) => handleSelectChange("priceRange", val)}
-                          placeholder="Select Price Range"
+                        <input
+                          type="text"
                           name="priceRange"
-                          required={true}
-                          searchable={false}
+                          value={formData.priceRange}
+                          onChange={handleChange}
+                          placeholder="e.g., $10,000 - $20,000, Under $15k..."
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#C74B3F]"
                         />
                       </div>
 
