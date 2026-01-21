@@ -2,33 +2,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import FloatingActions from "@/components/floating-actions"
 import Link from "next/link"
-import { Phone, Mail, MapPin } from "lucide-react"
+import { MapPin } from "lucide-react"
 
 export default function AboutPage() {
-  const team = [
-    {
-      name: "Michael Rodriguez",
-      position: "Owner & General Manager",
-      phone: "(214) 215-6273",
-      email: "cjunctionllc@gmail.com",
-      initial: "M",
-    },
-    {
-      name: "Sarah Johnson",
-      position: "Sales Manager",
-      phone: "(214) 215-6273",
-      email: "cjunctionllc@gmail.com",
-      initial: "S",
-    },
-    {
-      name: "David Thompson",
-      position: "Finance Specialist",
-      phone: "(214) 215-6273",
-      email: "cjunctionllc@gmail.com",
-      initial: "D",
-    },
-  ]
-
   return (
     <main className="min-h-screen bg-white">
       <Header />
@@ -71,51 +47,6 @@ export default function AboutPage() {
                 className="w-full h-auto drop-shadow-2xl"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="bg-white py-24 px-4 md:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-4">Meet Our Team</h2>
-            <p className="text-gray-700 text-lg">Dedicated professionals ready to help you find your perfect vehicle</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="bg-gray-50 rounded-xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 card-hover"
-              >
-                <div
-                  className="w-24 h-24 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-3xl font-bold shadow-lg"
-                  style={{ backgroundColor: "#C74B3F" }}
-                >
-                  {member.initial}
-                </div>
-                <h3 className="text-2xl font-bold text-black mb-2">{member.name}</h3>
-                <p className="text-[#C74B3F] font-semibold mb-6 text-lg">{member.position}</p>
-
-                <div className="space-y-4 text-left">
-                  <a
-                    href={`tel:${member.phone.replace(/[^0-9]/g, "")}`}
-                    className="flex items-center gap-3 text-gray-700 hover:text-[#C74B3F] transition-colors"
-                  >
-                    <Phone size={20} className="text-[#C74B3F]" />
-                    <span className="text-base">{member.phone}</span>
-                  </a>
-                  <a
-                    href={`mailto:${member.email}`}
-                    className="flex items-center gap-3 text-gray-700 hover:text-[#C74B3F] transition-colors"
-                  >
-                    <Mail size={20} className="text-[#C74B3F]" />
-                    <span className="break-all text-base">{member.email}</span>
-                  </a>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
