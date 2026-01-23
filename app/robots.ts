@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { seoConfig } from '@/lib/seo-config'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,7 +9,12 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/admin/', '/api/'],
       },
+      {
+        userAgent: 'Googlebot',
+        allow: '/',
+        disallow: ['/admin/', '/api/'],
+      },
     ],
-    sitemap: 'https://carjunctionllc.com/sitemap.xml',
+    sitemap: `${seoConfig.siteUrl}/sitemap.xml`,
   }
 }

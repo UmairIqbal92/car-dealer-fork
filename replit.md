@@ -30,8 +30,18 @@ npm run dev
 - `lib/db.ts` - Database connection
 - `lib/email.ts` - Email functions
 - `lib/auth.ts` - Authentication helpers
+- `lib/seo-config.ts` - **SEO settings (Google Console, Analytics, etc.)**
 - `components/` - React components
 - `app/api/` - API routes
+
+## SEO Configuration (lib/seo-config.ts)
+Edit this file to add your verification codes and tracking IDs:
+- `googleVerification` - Google Search Console verification code
+- `bingVerification` - Bing Webmaster verification code
+- `googleTagManagerId` - Google Tag Manager ID (GTM-XXXXX)
+- `googleAnalyticsId` - Google Analytics ID (G-XXXXXX)
+- `facebookPixelId` - Facebook Pixel ID
+- Social media URLs in `business.socialMedia`
 
 ## Brand Color
 Primary: `#C74B3F` (soft coral red)
