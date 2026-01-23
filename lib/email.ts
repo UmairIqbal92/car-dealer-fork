@@ -1,40 +1,16 @@
 import { Resend } from 'resend';
 
-let connectionSettings: any;
-
-async function getCredentials() {
-  const hostname = process.env.REPLIT_CONNECTORS_HOSTNAME;
-  const xReplitToken = process.env.REPL_IDENTITY 
-    ? 'repl ' + process.env.REPL_IDENTITY 
-    : process.env.WEB_REPL_RENEWAL 
-    ? 'depl ' + process.env.WEB_REPL_RENEWAL 
-    : null;
-
-  if (!xReplitToken) {
-    throw new Error('X_REPLIT_TOKEN not found for repl/depl');
-  }
-
-  connectionSettings = await fetch(
-    'https://' + hostname + '/api/v2/connection?include_secrets=true&connector_names=resend',
-    {
-      headers: {
-        'Accept': 'application/json',
-        'X_REPLIT_TOKEN': xReplitToken
-      }
-    }
-  ).then(res => res.json()).then(data => data.items?.[0]);
-
-  if (!connectionSettings || (!connectionSettings.settings.api_key)) {
-    throw new Error('Resend not connected');
-  }
-  return { apiKey: connectionSettings.settings.api_key, fromEmail: connectionSettings.settings.from_email };
-}
-
 export async function getResendClient() {
-  const { apiKey } = await getCredentials();
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@carjunction.com';
+
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY environment variable is not set');
+  }
+
   return {
     client: new Resend(apiKey),
-    fromEmail: connectionSettings.settings.from_email
+    fromEmail
   };
 }
 
@@ -123,7 +99,7 @@ export async function sendCarFinderEmail(data: {
   try {
     const { client, fromEmail } = await getResendClient();
     
-    await client.emails.send({
+    const result = await client.emails.send({
       from: fromEmail,
       to: 'cjunctionllc@gmail.com',
       subject: `Car Finder Request from ${data.firstName} ${data.lastName}`,
@@ -142,7 +118,8 @@ export async function sendCarFinderEmail(data: {
       `
     });
     
-    return { success: true };
+    console.log('Email sent successfully:', result);
+    return { success: true, data: result };
   } catch (error) {
     console.error('Email send error:', error);
     return { success: false, error };
